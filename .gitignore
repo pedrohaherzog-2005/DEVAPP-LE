@@ -1,2 +1,9 @@
 ## remove o arquivo usado para push que contém o token
 gitpush.bat
+
+## ocultar o arquivo start.bat
+start.bat
+
+## ocultar as pastas /wget e /sevenzip
+wget/
+sevenzip/
