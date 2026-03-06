@@ -14,13 +14,45 @@ export downvscode="https://code.visualstudio.com/thank-you?dv=linux64/code-stabl
 export arqvscode="code-stable-x64-1772587898.tar.gz"
 export nomevscode="vscode"
 
-export downnetbeans=""
-export arqnetbeans=".tar.gz"
+export downnetbeans="https://dlcdn.apache.org/netbeans/netbeans/24/netbeans-24-bin.zip"
+export arqnetbeans="netbeans-24-bin.zip"
 export nomenetbeans="netbeans"
 
-export downnode="https://nodejs.org/pt-br/download/node-v22.22.1.tar.gz"
-export arqnode="node-v22.22.1.tar.gz"
-export nomenode="node-v22.22.1"
+export downandroidstudio="https://redirector.gvt1.com/android/studio/ide-zips/2025.2.3.9/android-studio-2025.2.3.9-linux.tar.gz"
+export arqandroidstudio="android-studio-2025.2.3.9-linux.tar.gz"
+
+export downcommandlinetools="https://dl.google.com/android/repository/commandlinetools-linux-14742923_latest.zip"
+export arqcommandlinetools="commandlinetools-linux-14742923_latest.zip"
+
+export downplatformtools="https://dl.google.com/android/repository/platform-tools-latest-linux.zip"
+export arqplatformtools="platform-tools-latest-linux.zip"
+
+export downflutter="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.38.9-stable.tar.xz"
+export arqflutter="flutter_linux_3.38.9-stable.tar.xz"
+
+export downnode="https://nodejs.org/dist/v22.15.0/node-v22.15.0-linux-x64.tar.xz"
+export arqnode="node-v22.15.0-linux-x64.tar.xz"
+export nomenode="node-v22.15.0-linux-x64"
+
+export downjdk="https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz"
+export arqjdk="openjdk-21.0.2_linux-x64_bin.tar.gz"
+export nomejdk="jdk-21.0.2"
+
+export downgradle="https://services.gradle.org/distributions/gradle-8.12-bin.zip"
+export arqgradle="gradle-8.12-bin.zip"
+export nomegradle="gradle-8.12"
+
+export downmaven="https://dlcdn.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.tar.gz"
+export arqmaven="apache-maven-3.9.11-bin.tar.gz"
+export nomemaven="apache-maven-3.9.11"
+
+export downmysql="https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.39-linux-glibc2.28-x86_64.tar.xz"
+export arqmysql="mysql-8.0.39-linux-glibc2.28-x86_64.tar.xz"
+export nomemysql="mysql-8.0.39-linux-glibc2.28-x86_64"
+
+export downmariadb="https://archive.mariadb.org/mariadb-11.4.2/bintar-linux-systemd-x86_64/mariadb-11.4.2-linux-systemd-x86_64.tar.gz"
+export arqmariadb="mariadb-11.4.2-linux-systemd-x86_64.tar.gz"
+export nomemariadb="mariadb-11.4.2-linux-systemd-x86_64"
 
 # ---------------------------------------------------------
 # VARIÁVEIS DE AMBIENTE (Substitui os set por export)
