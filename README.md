@@ -1,4 +1,4 @@
-# DEVAPP Linux Edition
+# DEV-APP Linux Edition
 
 Compilação de aplicações para desenvolvimento de sistemas
 <!-- * Em caso de dicas ou auxílio envie mensagem para [rfdouro@gmail.com](mailto:rfdouro@gmail.com) -->
