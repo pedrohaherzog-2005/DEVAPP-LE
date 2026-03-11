@@ -101,8 +101,6 @@ export downmongosh="https://downloads.mongodb.com/compass/mongosh-2.3.2-linux-x6
 export arqmongosh="mongosh-2.3.2-linux-x64.tar.gz"
 export nomemongosh="mongosh-2.3.2-linux-x64"
 
-export downputty="https://the.earth.li/~sgtatham/putty/latest/putty-0.81.tar.gz"
-
 # export downpostgres="https://ftp.postgresql.org/pub/source/v16.3/postgresql-16.3.tar.gz"
 # export arqpostgres="postgresql-16.3.tar.gz"
 export downpostgres="https://ftp.postgresql.org/pub/source/v15.7/postgresql-15.7.tar.gz"
@@ -144,7 +142,6 @@ export PYTHON_HOME="$DEVAPP_HOME/python"
 export NEO4J_HOME="$DEVAPP_HOME/neo4j"
 export MONGODB_HOME="$DEVAPP_HOME/mongodb"
 export MONGOSH_HOME="$DEVAPP_HOME/mongosh"
-export PUTTY_HOME="$DEVAPP_HOME/putty"
 export POSTGRES_HOME="$DEVAPP_HOME/pgsql"
 export GRADLE_HOME="$DEVAPP_HOME/gradle"
 
@@ -158,7 +155,7 @@ export PGPORT="5439"
 export PGLOCALEDIR="$POSTGRES_HOME/share/locale"
 
 # ==========================================================
-export PATH="$DEVAPP_HOME:$JAVA_HOME/bin:$MAVEN_HOME/bin:$NODE_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$VSCODE_HOME/bin:$NOTEPAD_HOME/bin:$GIT_HOME/bin:$PYTHON_HOME/bin:$NEO4J_HOME/bin:$MONGODB_HOME/bin:$MONGOSH_HOME/bin:$PUTTY_HOME/bin"
+export PATH="$DEVAPP_HOME:$JAVA_HOME/bin:$MAVEN_HOME/bin:$NODE_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$VSCODE_HOME/bin:$NOTEPAD_HOME/bin:$GIT_HOME/bin:$PYTHON_HOME/bin:$NEO4J_HOME/bin:$MONGODB_HOME/bin:$PATH"
 export PATH="$DEVAPP_HOME:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools"
 export PATH="$DEVAPP_HOME:$POSTGRES_HOME/bin"
 export PATH="$DEVAPP_HOME:$FLUTTER_HOME/bin"
@@ -272,7 +269,6 @@ menu_executar() {
             44) exec_neo4j ;;
             45) exec_mongodb ;;
             46) exec_mongosh ;;
-            5) exec_putty ;;
             6) exec_notepadqq ;;
             71) exec_postman ;;
             72) exec_insomnia ;;
@@ -306,7 +302,6 @@ menu_instalar() {
         echo "( 53 ) Instalar o Neo4J        "
         echo "( 54 ) Instalar o MongoDB"
         echo "( 541 ) Instalar o MongoSH"
-        echo "( 6 ) Instalar o Putty"
         echo "( 7 ) Instalar o PYTHON"
         echo "( 8 ) Instalar o NOTEPADqq"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
@@ -320,26 +315,82 @@ menu_instalar() {
 
         case $UserInput in
             0) return ;;
-            1) baixar_jdk ;;
-            11) baixar_netbeans ;;
-            2) baixar_vscode ;; # ok
-            3) baixar_node ;;
-            31) baixar_git ;;
-            4) baixar_sdk_android ;;
-            41) baixar_android_studio ;; # ok
-            42) baixar_flutter_sdk ;; # ok
-            43) baixar_gradle ;;
-            5) baixar_postgresql ;;
-            50) baixar_dbeaver ;;
-            51) baixar_mysql ;;
-            52) baixar_mariadb ;;
-            53) baixar_neo4j ;;
-            54) baixar_mongodb ;;
-            541) baixar_mongosh ;;
-            6) baixar_putty ;;
-            7) baixar_python ;;
-            8) baixar_notepadqq ;;
-            *) echo "Opção inválida: '$UserInput'. Tente novamente."; sleep 2 ;;
+            1)
+                echo "Iniciando download/instalação do JDK + Maven..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            11)
+                echo "Iniciando download/instalação do NetBeans..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            2)
+                echo "Iniciando download/instalação do VS Code..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            3)
+                echo "Iniciando download/instalação do Node + VueCLI + Git..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            31)
+                echo "Iniciando download/instalação do Git..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            4)
+                echo "Iniciando download/instalação do SDK Android..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            41)
+                echo "Iniciando download/instalação do Android Studio..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            42)
+                echo "Iniciando download/instalação do Flutter SDK..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            43)
+                echo "Iniciando download/instalação do Gradle..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            5)
+                echo "Iniciando download/instalação do PostgreSQL..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            50)
+                echo "Iniciando download/instalação do DBeaver..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            51)
+                echo "Iniciando download/instalação do MySQL..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            52)
+                echo "Iniciando download/instalação do MariaDB..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            53)
+                echo "Iniciando download/instalação do Neo4J..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            54)
+                echo "Iniciando download/instalação do MongoDB..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            541)
+                echo "Iniciando download/instalação do MongoSH..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            7)
+                echo "Iniciando download/instalação do Python..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            8)
+                echo "Iniciando download/instalação do Notepadqq / Editor nativo..."
+                read -p "Pressione Enter para continuar..."
+                ;;
+            *)
+                echo "Opção inválida: '$UserInput'. Tente novamente."
+                sleep 2
+                ;;
         esac
     done
 }
@@ -636,26 +687,6 @@ exec_mongosh() {
     fi
 }
 
-exec_putty() {
-    if [ -f "$PUTTY_HOME/putty" ]; then
-        echo "Iniciando PuTTY..."
-
-        "$PUTTY_HOME/putty" &  # O "&" no final garante que a interface gráfica do PuTTY abra
-                               # sem travar o terminal onde o seu menu está rodando.
-    else
-        tput setab 1
-        tput setaf 7
-        echo ":::::::::::::::::::::::::::::::::::::::::::::::"
-        echo "  PUTTY NÃO INSTALADO - USE A OPÇÃO DE INSTALAÇÃO"
-        echo ":::::::::::::::::::::::::::::::::::::::::::::::"
-        tput sgr0
-        echo ""
-        echo "Dica de Linux: Você também pode usar o comando nativo 'ssh' direto no terminal!"
-        echo ""
-        read -p "Pressione [Enter] para voltar ao menu..."
-    fi
-}
-
 exec_mysql() {
     if [ -f "$MYSQL_HOME/bin/mysqld" ]; then
 
@@ -815,177 +846,12 @@ exec_postgres() {
 }
 
 ## =======================================================
-# SEÇÃO DE INSTALAÇÃO DE EXTENÇÕES NO VSCODE
+# SEÇÃO DE EXECUÇÕES
 ## =======================================================
 
 # execuções do menu_instalar
-exec_inst_ext_vscode
+exec_instextvscode
 # executa o vscode indicando o caminho das extensões:
 # mais em https://code.visualstudio.com/docs/editor/extension-marketplace#_common-questions
 # mais em https://code.visualstudio.com/docs/editor/command-line#
 # mais em https://code.visualstudio.com/docs/editor/command-line#_advanced-cli-options
-# echo $DEVAPP_HOME
-echo "---------------------------------------"
-echo "Instalação de extensões do VSCODE"
-echo "Em $VSCODE_HOME"
-echo "---------------------------------------"
-# pause
-CODE_BIN="$VSCODE_HOME/bin/code"
-
-EXTENSIONS=(
-    "christian-kohler.npm-intellisense"
-    "christian-kohler.path-intellisense"
-    "dbaeumer.vscode-eslint"
-    "editorconfig.editorconfig"
-    "esbenp.prettier-vscode"
-    "formulahendry.auto-close-tag"
-    "formulahendry.auto-rename-tag"
-    "formulahendry.code-runner"
-    "formulahendry.dotnet"
-    "grogdunn.netbeans-keybindings"
-    "hollowtree.vue-snippets"
-    "jakewilson.vscode-cdnjs"
-    "jmrog.vscode-nuget-package-manager"
-    "juhahinkula.thymeleaf"
-    "mrmlnc.vscode-scss"
-    "ms-dotnettools.csharp"
-    "ms-dotnettools.vscode-dotnet-runtime"
-    "obrejla.netbeans-light-theme"
-    "octref.vetur"
-    "pkief.material-icon-theme"
-    "redhat.fabric8-analytics"
-    "redhat.java"
-    "redhat.vscode-community-server-connector"
-    "redhat.vscode-rsp-ui"
-    "redhat.vscode-server-connector"
-    "redhat.vscode-xml"
-    "ritwickdey.liveserver"
-    "visualstudioexptteam.intellicode-api-usage-examples"
-    "visualstudioexptteam.vscodeintellicode"
-    "vmware.vscode-boot-dev-pack"
-    "vmware.vscode-spring-boot"
-    "vscjava.vscode-java-debug"
-    "vscjava.vscode-java-dependency"
-    "vscjava.vscode-java-pack"
-    "vscjava.vscode-java-test"
-    "vscjava.vscode-maven"
-    "vscjava.vscode-spring-boot-dashboard"
-    "vscjava.vscode-spring-initializr"
-    "vscode-icons-team.vscode-icons"
-    "vue.volar"
-    "yzhang.markdown-all-in-one"
-    "zignd.html-css-class-completion"
-    "wscats.vue"
-    "mechatroner.rainbow-csv"
-    "samuel-weinhardt.vscode-jsp-lang"
-    "alexisvt.flutter-snippets"
-    "dart-code.dart-code"
-    "dart-code.flutter"
-    "rexthedev.flutter-preview"
-)
-
-echo "Iniciando a instalação de ${#EXTENSIONS[@]} extensões..."
-
-for ext in "${EXTENSIONS[@]}"; do # 3. Loop para instalar cada uma
-    echo "Instalando: $ext"
-    "$CODE_BIN" --extensions-dir "$VSCODE_HOME/extensions" --user-data-dir "$VSCODE_HOME/userdir" --install-extension "$ext"
-done
-
-echo "---------------------------------------"
-echo "Todas as extensões foram processadas!"
-echo "---------------------------------------"
-
-read -p "Pressione [Enter] para voltar ao menu..."
-
-exec_instal_vue() {
-    echo "---------------------------------------"
-    echo "Iniciando a instalação do Vue CLI..."
-    echo "---------------------------------------"
-    # echo $DEVAPP_HOME
-    if command -v gnome-terminal >/dev/null 2>&1; then
-        gnome-terminal --title="Instala Vue" -- bash -c "npm i -g @vue/cli; echo ''; echo 'Instalação finalizada!'; sleep 2" &
-    else
-        npm i -g @vue/cli  # Adicione 'sudo' antes do npm se o seu ambiente exigir.
-    fi
-
-    read -p "Pressione [Enter] para voltar ao menu..."
-}
-
-## =======================================================
-# SEÇÃO DE INSTALAÇÃO DE PROGRAMAS
-## =======================================================
-
-baixar_vscode() {
-    # $DEVAPP_HOME
-    mkdir -p "$VSCODE_HOME"
-    cd "$VSCODE_HOME" || exit
-
-    echo "---------------------------------------"
-    echo "Baixando VS Code..."
-    wget --no-check-certificate "$downvscode"
-
-    echo "Extraindo arquivos..."
-    tar -xzf "$arqvscode" --strip-components=1
-
-    echo "Removendo instalador..."
-    rm -f "$arqvscode"
-
-    echo "Configurando diretórios de usuário..."
-    mkdir -p "userdir/User"  # O comando 'mkdir -p' cria a árvore de pastas de uma vez (userdir e User)
-
-    echo "Copiando configurações (settings.json)..."
-    cp "$DEVAPP_HOME/settings.json" "$VSCODE_HOME/userdir/User/"
-
-    echo "Instalação concluída!"
-    echo "---------------------------------------"
-    # lo lugar do GOTO chamamos a função que você já tem para instalar extensões
-    exec_inst_ext_vscode
-}
-
-baixar_android_studio() {
-    # $DEVAPP_HOME
-    PARENT_DIR=$(dirname "$ANDROID_STUDIO_HOME")
-
-    mkdir -p "$PARENT_DIR"
-    cd "$PARENT_DIR" || exit
-
-    wget --no-check-certificate "$downandroidstudio" -O "$arqandroidstudio"
-
-    echo "Extraindo arquivos..."
-    tar -xzf "$arqandroidstudio" --strip-components=1
-
-    echo "Removendo arquivo baixado..."
-    rm -f "$arqandroidstudio"
-
-    echo "---------------------------------------"
-    echo "Android Studio instalado com sucesso!"
-    echo "---------------------------------------"
-
-    read -p "Pressione [Enter] para voltar ao menu..."
-}
-
-baixar_flutter_sdk() {
-    # $DEVAPP_HOME
-    cd "$DEVAPP_HOME" || exit
-
-    wget --no-check-certificate "$downflutter" -O "$arqflutter"
-
-    if [ -d "flutter" ]; then
-        echo "Removendo versão antiga do Flutter..."
-        rm -rf "flutter"
-    fi
-
-    echo "Extraindo Flutter..."
-    tar -xJf "$arqflutter" --strip-components=1
-
-    echo "Removendo arquivo baixado..."
-    rm -f "$arqflutter"
-
-    echo "---------------------------------------"
-    echo "Flutter instalado com sucesso!"
-    echo "Dica: Execute 'flutter doctor' para validar dependências."
-    echo "---------------------------------------"
-
-    read -p "Pressione [Enter] para voltar ao menu..."
-
-}
