@@ -1,15 +1,14 @@
 #!/bin/bash
 
-# Configurações iniciais de codificação e data
 export LANG=en_US.UTF-8
 now=$(date "+%Y-%m-%d %H:%M")
 
 # Pega o diretório atual de onde o script está sendo rodado
 DEVAPP_HOME=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
-## ---------------------------------------------------------
+## ==============================================================
 # VARIÁVEIS COM URLs PARA DOWNLOAD DOS PROGRAMAS COMPLEMENTARES
-## ---------------------------------------------------------
+## ==============================================================
 
 # export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/5437499feb04f7a586f677b155b039bc2b3669eb/code-stable-x64-1718753229.tar.gz"
 # export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/f1a4fb101478ce6ec82fe9627c43efbf9e98c813/code-stable-x64-1731510444.tar.gz"
@@ -203,28 +202,14 @@ while true; do
     echo ""
 
     case $UserInput in
-        0)
-            tput sgr0
-            clear
-            echo "Saindo..."
-            exit 0
-            ;;
-        1)
-            echo "Entrando em Programação e Banco de Dados..."
-            read -p "Pressione Enter para continuar..."
-            ;;
-        2)
-            echo "Entrando em Instalações..."
-            read -p "Pressione Enter para continuar..."
-            ;;
-        3)
-            echo "Entrando em Auxiliares..."
-            read -p "Pressione Enter para continuar..."
-            ;;
-        *)
-            echo "Opção inválida: '$UserInput'. Tente novamente."
-            sleep 2
-            ;;
+        0) tput sgr0
+           clear
+           echo "Saindo..."
+           exit 0 ;;
+        1) menu_executar ;;
+        2) menu_instalar ;;
+        3) menu_auxiliares ;;
+        *) echo "Opção inválida: '$UserInput'. Tente novamente."; sleep 2 ;;
     esac
 done
 
@@ -323,12 +308,12 @@ menu_instalar() {
             1) baixar_jdk ;;
             11) baixar_netbeans ;;
             2) baixar_vscode ;; # ok
-            3) baixar_node ;;
-            31) baixar_git ;;
-            4) baixar_sdk_android ;;
+            3) baixar_node ;; # ok
+            31) baixar_git ;; # ok
+            4) baixar_sdk_android ;; # ok
             41) baixar_android_studio ;; # ok
             42) baixar_flutter_sdk ;; # ok
-            43) baixar_gradle ;;
+            43) baixar_gradle ;; # ok
             5) baixar_postgresql ;;
             50) baixar_dbeaver ;;
             51) baixar_mysql ;;
@@ -373,15 +358,15 @@ menu_auxiliares() {
 
         case $UserInput in
             0) return ;;
-            1) abre_terminal ;;
-            2) abre_visual_paradigm ;;
-            3) abre_yed ;;
-            4) abre_drawio ;;
-            5) abre_excalidraw ;;
-            6) abre_mermaid ;;
-            7) abre_smart_draw ;;
-            8) abre_db_diagram ;;
-            9) abre_creately ;;
+            1) abrir_terminal ;;
+            2) abrir_visual_paradigm ;;
+            3) abrir_yed ;;
+            4) abrir_drawio ;;
+            5) abrir_excalidraw ;;
+            6) abrir_mermaid ;;
+            7) abrir_smart_draw ;;
+            8) abrir_db_diagram ;;
+            9) abrir_creately ;;
             *) echo "Opção inválida"; sleep 1 ;;
         esac
 }
@@ -391,7 +376,7 @@ menu_auxiliares() {
 ## =======================================================
 
 # execuções do menu_auxiliares
-abre_terminal() {
+abrir_terminal() {
     echo "Abrindo novo terminal... (Digite 'exit' para voltar ao menu)"
     if command -v gnome-terminal >/dev/null 2>&1; then
         gnome-terminal & 
@@ -400,35 +385,35 @@ abre_terminal() {
     fi
 }
 
-abre_visual_paradigm() {
+abrir_visual_paradigm() {
     xdg-open "https://online.visual-paradigm.com/pt/diagrams/solutions/free-visual-paradigm-online/"
 }
 
-abre_yed() {
+abrir_yed() {
     xdg-open "https://www.yworks.com/yed-live/"
 }
 
-abre_drawio() {
+abrir_drawio() {
     xdg-open "https://app.diagrams.net/"
 }
 
-abre_excalidraw() {
+abrir_excalidraw() {
     xdg-open "https://excalidraw.com/"
 }
 
-abre_mermaid() {
+abrir_mermaid() {
     xdg-open "https://www.mermaidchart.com/play"
 }
 
-abre_smart_draw() {
+abrir_smart_draw() {
     xdg-open "https://www.smartdraw.com/entity-relationship-diagram/er-diagram-tool.htm"
 }
 
-abre_db_diagram() {
+abrir_db_diagram() {
     xdg-open "https://dbdiagram.io/home"
 }
 
-abre_creately() {
+abrir_creately() {
     xdg-open "https://app.creately.com/d/start/dashboard"
 }
 
@@ -967,7 +952,6 @@ baixar_android_studio() {
 baixar_flutter_sdk() {
     # $DEVAPP_HOME
     cd "$DEVAPP_HOME" || exit
-
     wget --no-check-certificate "$downflutter" -O "$arqflutter"
 
     if [ -d "flutter" ]; then
@@ -987,5 +971,170 @@ baixar_flutter_sdk() {
     echo "---------------------------------------"
 
     read -p "Pressione [Enter] para voltar ao menu..."
+}
 
+baixar_gradle() {
+    # $DEVAPP_HOME
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downgradle"
+
+    if [ -d "gradle" ]; then
+        echo "Removendo versão antiga do Gradle..."
+        rm -rf "gradle"
+    fi
+
+    echo "Extraindo gradle..."
+    unzip -q "$arqgradle" --strip-components=1  # 5. Extração (O parâmetro -q deixa o processo silencioso/rápido)
+
+    echo "Removendo arquivo baixado..."
+    rm -f "$arqgradle"
+
+    echo "Renomeando de '$nomegradle' para 'gradle'..."
+    mv "$nomegradle" "gradle"  # No Linux, o comando 'mv' serve tanto para mover quanto para renomear
+
+    echo "---------------------------------------"
+    echo "Gradle instalado com sucesso!"
+    echo "---------------------------------------"
+
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_sdk_android() {
+    # $DEVAPP_HOME
+    mkdir -p "$ANDROID_HOME"
+    cd "$ANDROID_HOME" || exit
+
+    wget --no-check-certificate "$downcommandlinetools" -O "$arqcommandlinetools"
+    wget --no-check-certificate "$downplatformtools" -O "$arqplatformtools"
+
+    echo "Extraindo Command Line Tools..."
+    mkdir -p "temp_cmd"  # Criamos uma pasta temporária para organizar a estrutura 'latest' que o Android exige
+    unzip -q "$arqcommandlinetools" -d "temp_cmd" --strip-components=1
+
+    mkdir -p "cmdline-tools"
+    mv temp_cmd/cmdline-tools "cmdline-tools/latest"
+    rm -rf "temp_cmd"
+
+    echo "Extraindo Platform Tools..."
+    unzip -q "$arqplatformtools" --strip-components=1
+
+    echo "Limpando arquivos temporários..."
+    rm -f "$arqcommandlinetools" "$arqplatformtools"
+
+    echo "---------------------------------------"
+    echo "SDK_ANDROID instalado com sucesso!"
+    echo "---------------------------------------"
+
+    read -p "Pressione [Enter] para voltar ao menu..."k
+}
+
+baixar_node() {
+    # $DEVAPP_HOME
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downnode" -O "$arqnode"
+
+    if [ -d "node" ]; then
+        echo "Removendo versão antiga do Node..."
+        rm -rf "node"
+    fi
+
+    echo "Extraindo arquivos do Node.js..."
+    tar -xJf "$arqnode" --strip-components=1
+
+    echo "Removendo arquivo baixado..."
+    rm -f "$arqnode"
+
+    echo "Renomeando de '$nomenode' para 'node'..."
+    mv "$nomenode" "node"
+
+    echo "Configurando ambiente temporário para instalação do Vue..."
+    export PATH="$DEVAPP_HOME/node/bin:$PATH"
+
+    echo "Instalando Vue CLI globalmente no ambiente portátil..."
+    npm install -g @vue/cli
+
+    echo "---------------------------------------"
+    echo "Node.js e Vue CLI configurados!"
+    echo "---------------------------------------"
+
+    baixar_git
+}
+
+baixar_jdk() {
+    # $DEVAPP_HOME
+    cd "$DEVAPP_HOME" || exit
+    if [ -d "jdk" ]; then
+        echo "Removendo versão antiga do JDK..."
+        rm -rf "jdk"
+    fi
+
+    wget --no-check-certificate "$downjdk" -O "$arqjdk"
+
+    echo "Extraindo arquivos do JDK..."
+    tar -xzf "$arqjdk" --strip-components=1
+
+    echo "Removendo arquivo baixado..."
+    rm -f "$arqjdk"
+
+    echo "Renomeando de '$nomejdk' para 'jdk'..."
+    mv "$nomejdk" "jdk"
+
+    echo "---------------------------------------"
+    echo "JDK configurado com sucesso!"
+    echo "---------------------------------------"
+
+    baixar_maven
+}
+
+baixar_maven() {
+    # $DEVAPP_HOME
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downmaven" -O "$arqmaven"
+
+    if [ -d "maven" ]; then
+        echo "Removendo pasta 'maven' existente..."
+        rm -rf "maven"
+    fi
+
+    echo "Extraindo arquivos..."
+    tar -xzf "$arqmaven" --strip-components=1
+
+    echo "Removendo instalador..."
+    rm -f "$arqmaven"
+
+    echo "Renomeando de '$nomemaven' para 'maven'..."
+    mv "$nomemaven" "maven"
+
+    echo "---------------------------------------"
+    echo "Maven instalado com sucesso!"
+    echo "---------------------------------------"
+
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_git() {
+    # $DEVAPP_HOME
+    cd "$DEVAPP_HOME" || exit
+    if [ -d "git" ]; then
+        echo "Removendo versão antiga do Git..."
+        rm -rf "git"
+    fi
+
+    mkdir -p "git"
+    cd "$GIT_HOME" || exit
+
+    wget --no-check-certificate "$downgit" -O "$arqgit"
+
+    echo "Extraindo arquivos do Git..."
+    tar -xzf "$arqgit" --strip-components=1
+
+    echo "Removendo arquivo baixado..."
+    rm -f "$arqgit"
+
+    echo "---------------------------------------"
+    echo "Git instalado com sucesso!"
+    echo "---------------------------------------"
+
+    cd "$DEVAPP_HOME" || exit
+    read -p "Pressione [Enter] para voltar ao menu..."
 }
