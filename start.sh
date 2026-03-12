@@ -100,15 +100,15 @@ export downmongosh="https://downloads.mongodb.com/compass/mongosh-2.3.2-linux-x6
 export arqmongosh="mongosh-2.3.2-linux-x64.tar.gz"
 export nomemongosh="mongosh-2.3.2-linux-x64"
 
-export downputty="https://the.earth.li/~sgtatham/putty/latest/putty-0.81.tar.gz"
+export downputty="https://the.earth.li/~sgtatham/putty/latest/linux/x86_64/putty"
 
 # export downpostgres="https://ftp.postgresql.org/pub/source/v16.3/postgresql-16.3.tar.gz"
 # export arqpostgres="postgresql-16.3.tar.gz"
 export downpostgres="https://ftp.postgresql.org/pub/source/v15.7/postgresql-15.7.tar.gz"
 export arqpostgres="postgresql-15.7.tar.gz"
 
-export downnotepadqq="https://github.com/notepadqq/notepadqq/releases/download/v2.0.0-beta/Notepadqq-v2.0.0-beta-x86_64.AppImage"
-export arqnotepadqq="notepadqq.AppImage"
+export downnotepadnext="https://github.com/dail8859/NotepadNext/releases/download/NotepadNext-v0.13-x86_64.AppImage"
+export arqnotepadnext="NotepadNext-v0.13-x86_64.AppImage"
 
 export downpostman="https://dl.pstmn.io/download/latest/linux_64"
 export arqpostman="postman-linux-x64.tar.gz"
@@ -137,7 +137,7 @@ export NETBEANS_HOME="$DEVAPP_HOME/netbeans"
 export DBEAVER_HOME="$DEVAPP_HOME/dbeaver"
 export MARIADB_HOME="$DEVAPP_HOME/mariadb"
 export MYSQL_HOME="$DEVAPP_HOME/mysql"
-export NOTEPAD_HOME="$DEVAPP_HOME/notepad"
+export NOTEPAD_NEXT_HOME="$DEVAPP_HOME/notepadnext"
 export GIT_HOME="$DEVAPP_HOME/git"
 export PYTHON_HOME="$DEVAPP_HOME/python"
 export NEO4J_HOME="$DEVAPP_HOME/neo4j"
@@ -157,14 +157,13 @@ export PGPORT="5439"
 export PGLOCALEDIR="$POSTGRES_HOME/share/locale"
 
 # ==========================================================
-export PATH="$DEVAPP_HOME:$JAVA_HOME/bin:$MAVEN_HOME/bin:$NODE_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$VSCODE_HOME/bin:$NOTEPAD_HOME/bin:$GIT_HOME/bin:$PYTHON_HOME/bin:$NEO4J_HOME/bin:$MONGODB_HOME/bin:$MONGOSH_HOME/bin:$PUTTY_HOME/bin"
+export PATH="$DEVAPP_HOME:$JAVA_HOME/bin:$MAVEN_HOME/bin:$NODE_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$VSCODE_HOME/bin:$NOTEPAD_NEXT_HOME/bin:$GIT_HOME/bin:$PYTHON_HOME/bin:$NEO4J_HOME/bin:$MONGODB_HOME/bin:$MONGOSH_HOME/bin:$PUTTY_HOME/bin"
 export PATH="$DEVAPP_HOME:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools"
 export PATH="$DEVAPP_HOME:$POSTGRES_HOME/bin"
 export PATH="$DEVAPP_HOME:$FLUTTER_HOME/bin"
 export PATH="$DEVAPP_HOME:$GRADLE_HOME/bin"
 export PATH="$DEVAPP_HOME:$DOTNET_HOME:$DOTNET_ROOT:"
 export PATH="$DEVAPP_HOME:$PATH"
-# ==========================================================
 
 show_menu() {
     tput setab 4
@@ -224,7 +223,7 @@ menu_executar() {
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
         echo "( 1 ) NETBEANS"
         echo "( 2 ) VSCODE"
-        echo "( 3 ) ANDROID STUDIO"
+        echo "( 3 ) ANDROID-STUDIO"
         echo "( 4 ) DBEAVER"
         echo "( 41 ) POSTGRES"
         echo "( 42 ) MYSQL"
@@ -233,7 +232,7 @@ menu_executar() {
         echo "( 45 ) MONGODB"
         echo "( 46 ) MONGOSH"
         echo "( 5 ) PUTTY"
-        echo "( 6 ) NOTEPAD++"
+        echo "( 6 ) NotepadNEXT"
         echo "( 71 ) POSTMAN"
         echo "( 72 ) INSOMNIA"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
@@ -258,7 +257,7 @@ menu_executar() {
             45) exec_mongodb ;;
             46) exec_mongosh ;;
             5) exec_putty ;;
-            6) exec_notepadqq ;;
+            6) exec_notepadnext ;;
             71) exec_postman ;;
             72) exec_insomnia ;;
             *) echo "Opção inválida"; sleep 1 ;;
@@ -278,8 +277,8 @@ menu_instalar() {
         echo "( 1 ) Instala JDK + Maven"
         echo "( 11 ) NetBeans    "
         echo "( 2 ) Instala VSCODE + Configurações"
-        echo "( 3 ) Instala NODE + VueCLI + Git  "
-        echo "( 31 ) Instala Git "
+        echo "( 3 ) Instala NODE + VueCLI + Git"
+        echo "( 31 ) Instala Git"
         echo "( 4 ) Instala SDK Android CLI Basico"
         echo "( 41 ) Instalar o Android Studio **Use SDK Android em DEVAPP/android/sdk**"
         echo "( 42 ) Instalar o Flutter SDK"
@@ -288,12 +287,12 @@ menu_instalar() {
         echo "( 50 ) Instalar o DBeaver"
         echo "( 51 ) Instalar o MySQL"
         echo "( 52 ) Instalar o MariaDB"
-        echo "( 53 ) Instalar o Neo4J        "
+        echo "( 53 ) Instalar o Neo4J"
         echo "( 54 ) Instalar o MongoDB"
         echo "( 541 ) Instalar o MongoSH"
         echo "( 6 ) Instalar o Putty"
         echo "( 7 ) Instalar o PYTHON"
-        echo "( 8 ) Instalar o NOTEPADqq"
+        echo "( 8 ) Instalar o NotepadNEXT"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
         read -p "Escolha uma opcao: " UserInput
         
@@ -305,8 +304,8 @@ menu_instalar() {
 
         case $UserInput in
             0) return ;;
-            1) baixar_jdk ;;
-            11) baixar_netbeans ;;
+            1) baixar_jdk ;; # ok
+            11) baixar_netbeans ;; # ok
             2) baixar_vscode ;; # ok
             3) baixar_node ;; # ok
             31) baixar_git ;; # ok
@@ -314,16 +313,16 @@ menu_instalar() {
             41) baixar_android_studio ;; # ok
             42) baixar_flutter_sdk ;; # ok
             43) baixar_gradle ;; # ok
-            5) baixar_postgresql ;;
-            50) baixar_dbeaver ;;
-            51) baixar_mysql ;;
-            52) baixar_mariadb ;;
-            53) baixar_neo4j ;;
-            54) baixar_mongodb ;;
-            541) baixar_mongosh ;;
-            6) baixar_putty ;;
-            7) baixar_python ;;
-            8) baixar_notepadqq ;;
+            5) baixar_postgresql ;; # ok
+            50) baixar_dbeaver ;; # ok
+            51) baixar_mysql ;; # ok
+            52) baixar_mariadb ;; # ok
+            53) baixar_neo4j ;; # ok
+            54) baixar_mongodb ;; # ok
+            541) baixar_mongosh ;; # ok
+            6) baixar_putty ;; # ok
+            7) baixar_python ;; # ok
+            8) baixar_notepadnext ;; # ok
             *) echo "Opção inválida: '$UserInput'. Tente novamente."; sleep 2 ;;
         esac
     done
@@ -460,10 +459,7 @@ exec_netbeans() {
 
 exec_dbeaver() {
     if [ -f "$DBEAVER_HOME/dbeaver" ]; then
-        echo "Iniciando DBeaver..."
-        
-        "$DBEAVER_HOME/dbeaver" &  # O "&" garante que o DBeaver abra em uma nova janela
-                                   # sem travar o seu terminal do menu.
+        "$DBEAVER_HOME/dbeaver" & # Iniciando DBeaver...
     else
         tput setab 1
         tput setaf 7
@@ -477,11 +473,8 @@ exec_dbeaver() {
 }
 
 exec_android_studio() {
-    if [ -f "$ANDROID_STUDIO_HOME/bin/studio.sh" ]; then
-        echo "Iniciando Android Studio..."
-
-        "$ANDROID_STUDIO_HOME/bin/studio.sh" > /dev/null 2>&1 &  # O "&" libera o terminal para você continuar usando o menu.
-                                                                 # "2>/dev/null" serve para não encher seu menu de logs do Android Studio.
+    if [ -f "$ANDROID_STUDIO_HOME/bin/studio.sh" ]; then # Iniciando Android Studio...
+        "$ANDROID_STUDIO_HOME/bin/studio.sh" > /dev/null 2>&1 &  # O "&" libera o terminal e o "2>/dev/null" serve para não encher o terminal de logs.
     else
         tput setab 1
         tput setaf 7
@@ -494,10 +487,9 @@ exec_android_studio() {
     fi
 }
 
-exec_notepadqq() {
-    if [ -f "$NOTEPAD_HOME/notepad" ]; then # No Linux, tentamos abrir editores comuns se o Notepad++ não existir
-        echo "Iniciando Notepadqq Portátil..."
-        "$NOTEPAD_HOME/notepad" &
+exec_notepadnext() {
+    if [ -f "$NOTEPAD_NEXT_HOME/notepadnext" ]; then # No Linux, tentamos abrir editores comuns se o Notepad++ não existir
+        "$NOTEPAD_NEXT_HOME/notepadnext" & # Iniciando NotepadNext...
     elif command -v gedit >/dev/null 2>&1; then
         gedit &
     elif command -v mousepad >/dev/null 2>&1; then
@@ -816,7 +808,6 @@ echo "Em $VSCODE_HOME"
 echo "---------------------------------------"
 # pause
 CODE_BIN="$VSCODE_HOME/bin/code"
-
 EXTENSIONS=(
     "christian-kohler.npm-intellisense"
     "christian-kohler.path-intellisense"
@@ -868,31 +859,20 @@ EXTENSIONS=(
     "dart-code.flutter"
     "rexthedev.flutter-preview"
 )
-
 echo "Iniciando a instalação de ${#EXTENSIONS[@]} extensões..."
-
 for ext in "${EXTENSIONS[@]}"; do # 3. Loop para instalar cada uma
     echo "Instalando: $ext"
     "$CODE_BIN" --extensions-dir "$VSCODE_HOME/extensions" --user-data-dir "$VSCODE_HOME/userdir" --install-extension "$ext"
 done
-
-echo "---------------------------------------"
-echo "Todas as extensões foram processadas!"
-echo "---------------------------------------"
-
 read -p "Pressione [Enter] para voltar ao menu..."
 
 exec_instal_vue() {
-    echo "---------------------------------------"
-    echo "Iniciando a instalação do Vue CLI..."
-    echo "---------------------------------------"
     # echo $DEVAPP_HOME
     if command -v gnome-terminal >/dev/null 2>&1; then
         gnome-terminal --title="Instala Vue" -- bash -c "npm i -g @vue/cli; echo ''; echo 'Instalação finalizada!'; sleep 2" &
     else
         npm i -g @vue/cli  # Adicione 'sudo' antes do npm se o seu ambiente exigir.
     fi
-
     read -p "Pressione [Enter] para voltar ao menu..."
 }
 
@@ -901,240 +881,287 @@ exec_instal_vue() {
 ## =======================================================
 
 baixar_vscode() {
-    # $DEVAPP_HOME
-    mkdir -p "$VSCODE_HOME"
-    cd "$VSCODE_HOME" || exit
-
-    echo "---------------------------------------"
-    echo "Baixando VS Code..."
+    cd "$VSCODE_HOME" || exit # garante que você está na pasta do projeto...
     wget --no-check-certificate "$downvscode"
-
-    echo "Extraindo arquivos..."
-    tar -xzf "$arqvscode" --strip-components=1
-
-    echo "Removendo instalador..."
-    rm -f "$arqvscode"
-
-    echo "Configurando diretórios de usuário..."
+    tar -xzf "$arqvscode" --strip-components=1 # Extraindo arquivos...
+    rm -f "$arqvscode" # Removendo instalador...
     mkdir -p "userdir/User"  # O comando 'mkdir -p' cria a árvore de pastas de uma vez (userdir e User)
-
-    echo "Copiando configurações (settings.json)..."
-    cp "$DEVAPP_HOME/settings.json" "$VSCODE_HOME/userdir/User/"
-
-    echo "Instalação concluída!"
-    echo "---------------------------------------"
-    # lo lugar do GOTO chamamos a função que você já tem para instalar extensões
-    exec_inst_ext_vscode
+    cp "$DEVAPP_HOME/settings.json" "$VSCODE_HOME/userdir/User/" # Copiando configurações (settings.json)...
+    exec_inst_ext_vscode # Chamamos a função que vai executar e instalar as extensões
 }
 
 baixar_android_studio() {
-    # $DEVAPP_HOME
     PARENT_DIR=$(dirname "$ANDROID_STUDIO_HOME")
-
     mkdir -p "$PARENT_DIR"
     cd "$PARENT_DIR" || exit
-
     wget --no-check-certificate "$downandroidstudio" -O "$arqandroidstudio"
-
-    echo "Extraindo arquivos..."
     tar -xzf "$arqandroidstudio" --strip-components=1
-
-    echo "Removendo arquivo baixado..."
     rm -f "$arqandroidstudio"
-
-    echo "---------------------------------------"
-    echo "Android Studio instalado com sucesso!"
-    echo "---------------------------------------"
-
     read -p "Pressione [Enter] para voltar ao menu..."
 }
 
 baixar_flutter_sdk() {
-    # $DEVAPP_HOME
     cd "$DEVAPP_HOME" || exit
     wget --no-check-certificate "$downflutter" -O "$arqflutter"
-
     if [ -d "flutter" ]; then
-        echo "Removendo versão antiga do Flutter..."
-        rm -rf "flutter"
+        rm -rf "flutter" # Removendo versão antiga do Flutter...
     fi
-
-    echo "Extraindo Flutter..."
     tar -xJf "$arqflutter" --strip-components=1
-
-    echo "Removendo arquivo baixado..."
     rm -f "$arqflutter"
-
-    echo "---------------------------------------"
-    echo "Flutter instalado com sucesso!"
     echo "Dica: Execute 'flutter doctor' para validar dependências."
-    echo "---------------------------------------"
-
     read -p "Pressione [Enter] para voltar ao menu..."
 }
 
 baixar_gradle() {
-    # $DEVAPP_HOME
     cd "$DEVAPP_HOME" || exit
     wget --no-check-certificate "$downgradle"
-
     if [ -d "gradle" ]; then
         echo "Removendo versão antiga do Gradle..."
         rm -rf "gradle"
     fi
-
-    echo "Extraindo gradle..."
     unzip -q "$arqgradle" --strip-components=1  # 5. Extração (O parâmetro -q deixa o processo silencioso/rápido)
-
-    echo "Removendo arquivo baixado..."
     rm -f "$arqgradle"
-
-    echo "Renomeando de '$nomegradle' para 'gradle'..."
-    mv "$nomegradle" "gradle"  # No Linux, o comando 'mv' serve tanto para mover quanto para renomear
-
-    echo "---------------------------------------"
-    echo "Gradle instalado com sucesso!"
-    echo "---------------------------------------"
-
+    mv "$nomegradle" "gradle" # Renomeando o nome do arquivo para 'gradle'. E aqui o 'mv' está servindo para renomear.
     read -p "Pressione [Enter] para voltar ao menu..."
 }
 
 baixar_sdk_android() {
-    # $DEVAPP_HOME
-    mkdir -p "$ANDROID_HOME"
     cd "$ANDROID_HOME" || exit
-
     wget --no-check-certificate "$downcommandlinetools" -O "$arqcommandlinetools"
     wget --no-check-certificate "$downplatformtools" -O "$arqplatformtools"
-
-    echo "Extraindo Command Line Tools..."
     mkdir -p "temp_cmd"  # Criamos uma pasta temporária para organizar a estrutura 'latest' que o Android exige
     unzip -q "$arqcommandlinetools" -d "temp_cmd" --strip-components=1
-
     mkdir -p "cmdline-tools"
     mv temp_cmd/cmdline-tools "cmdline-tools/latest"
     rm -rf "temp_cmd"
-
-    echo "Extraindo Platform Tools..."
     unzip -q "$arqplatformtools" --strip-components=1
-
-    echo "Limpando arquivos temporários..."
     rm -f "$arqcommandlinetools" "$arqplatformtools"
-
-    echo "---------------------------------------"
-    echo "SDK_ANDROID instalado com sucesso!"
-    echo "---------------------------------------"
-
-    read -p "Pressione [Enter] para voltar ao menu..."k
+    read -p "Pressione [Enter] para voltar ao menu..."
 }
 
 baixar_node() {
-    # $DEVAPP_HOME
     cd "$DEVAPP_HOME" || exit
     wget --no-check-certificate "$downnode" -O "$arqnode"
-
     if [ -d "node" ]; then
-        echo "Removendo versão antiga do Node..."
         rm -rf "node"
     fi
-
-    echo "Extraindo arquivos do Node.js..."
     tar -xJf "$arqnode" --strip-components=1
-
-    echo "Removendo arquivo baixado..."
     rm -f "$arqnode"
-
-    echo "Renomeando de '$nomenode' para 'node'..."
     mv "$nomenode" "node"
-
-    echo "Configurando ambiente temporário para instalação do Vue..."
-    export PATH="$DEVAPP_HOME/node/bin:$PATH"
-
-    echo "Instalando Vue CLI globalmente no ambiente portátil..."
-    npm install -g @vue/cli
-
-    echo "---------------------------------------"
-    echo "Node.js e Vue CLI configurados!"
-    echo "---------------------------------------"
-
+    export PATH="$DEVAPP_HOME/node/bin:$PATH" # Configurando ambiente para instalação do Vue.js...
+    npm install -g @vue/cli # Instalando Vue CLI globalmente na pasta do projeto...
     baixar_git
 }
 
 baixar_jdk() {
-    # $DEVAPP_HOME
     cd "$DEVAPP_HOME" || exit
     if [ -d "jdk" ]; then
-        echo "Removendo versão antiga do JDK..."
         rm -rf "jdk"
     fi
-
     wget --no-check-certificate "$downjdk" -O "$arqjdk"
-
-    echo "Extraindo arquivos do JDK..."
     tar -xzf "$arqjdk" --strip-components=1
-
-    echo "Removendo arquivo baixado..."
     rm -f "$arqjdk"
-
-    echo "Renomeando de '$nomejdk' para 'jdk'..."
     mv "$nomejdk" "jdk"
-
-    echo "---------------------------------------"
-    echo "JDK configurado com sucesso!"
-    echo "---------------------------------------"
-
     baixar_maven
 }
 
 baixar_maven() {
-    # $DEVAPP_HOME
     cd "$DEVAPP_HOME" || exit
     wget --no-check-certificate "$downmaven" -O "$arqmaven"
-
     if [ -d "maven" ]; then
-        echo "Removendo pasta 'maven' existente..."
         rm -rf "maven"
     fi
-
-    echo "Extraindo arquivos..."
     tar -xzf "$arqmaven" --strip-components=1
-
-    echo "Removendo instalador..."
     rm -f "$arqmaven"
-
-    echo "Renomeando de '$nomemaven' para 'maven'..."
     mv "$nomemaven" "maven"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
 
-    echo "---------------------------------------"
-    echo "Maven instalado com sucesso!"
-    echo "---------------------------------------"
+baixar_netbeans() {
+    cd "$DEVAPP_HOME" || exit
+    if [ -d "$NETBEANS_HOME" ]; then
+        rm -rf "$NETBEANS_HOME"
+    fi
+    wget --no-check-certificate "$downnetbeans" -O "$arqnetbeans"
+    unzip -q "$arqnetbeans" --strip-components=1
+    rm -f "$arqnetbeans"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
 
+baixar_notepadnext() {
+    cd "$DEVAPP_HOME" || exit
+    if [ -d "$NOTEPAD_NEXT_HOME" ]; then
+        rm -rf "$NOTEPAD_NEXT_HOME"
+    fi
+    wget --auth-no-challenge "$downnotepadnext" -O "$arqnotepadnext"
+    mkdir -p "notepadnext"
+    chmod +x "notepadnext/NotepadNext" 2>/dev/null # Permissão de execução
+    rm -f "$arqnotepadnext"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_postman() {
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downpostman" -O "$arqpostman"
+    if [ -d "Postman" ]; then
+        rm -rf "Postman"
+    fi
+    tar -xzf "$arqpostman" --strip-components=1
+    rm -f "$arqpostman"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_insomnia() {
+    cd "$DEVAPP_HOME" || exit
+    if [ -d "insomnia" ]; then
+        rm -rf "insomnia"
+    fi
+    mkdir -p "insomnia"
+    wget --no-check-certificate "$downinsomnia" -O "insomnia/$arqinsomnia"
+    chmod +x "insomnia/$arqinsomnia"
     read -p "Pressione [Enter] para voltar ao menu..."
 }
 
 baixar_git() {
-    # $DEVAPP_HOME
     cd "$DEVAPP_HOME" || exit
     if [ -d "git" ]; then
-        echo "Removendo versão antiga do Git..."
         rm -rf "git"
     fi
-
     mkdir -p "git"
     cd "$GIT_HOME" || exit
-
     wget --no-check-certificate "$downgit" -O "$arqgit"
-
-    echo "Extraindo arquivos do Git..."
     tar -xzf "$arqgit" --strip-components=1
-
-    echo "Removendo arquivo baixado..."
     rm -f "$arqgit"
-
-    echo "---------------------------------------"
-    echo "Git instalado com sucesso!"
-    echo "---------------------------------------"
-
     cd "$DEVAPP_HOME" || exit
     read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_dbeaver() {
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downdbeaver" -O "$arqdbeaver" # Download (Usando -O para garantir o nome do arquivo)
+    if [ -d "dbeaver" ]; then
+        rm -rf "dbeaver"
+    fi
+    tar -xzf "$arqdbeaver" --strip-components=1
+    rm -f "$arqdbeaver"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_mysql() {
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downmysql" -O "$arqmysql"
+    if [ -d "mysql" ]; then
+        rm -rf "mysql"
+    fi
+    tar -xJf "$arqmysql" --strip-components=1
+    rm -f "$arqmysql"
+    mv "$nomemysql" "mysql"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_mariadb() {
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downmariadb" -O "$arqmariadb"
+    if [ -d "mariadb" ]; then
+        rm -rf "mariadb"
+    fi
+    tar -xzf "$arqmariadb" --strip-components=1
+    rm -f "$arqmariadb"
+    mv "$nomemariadb" "mariadb"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_postgresql() {
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downpostgres" -O "$arqpostgres"
+    if [ -d "pgsql" ]; then
+        rm -rf "pgsql"
+    fi
+    tar -xzf "$arqpostgres" --strip-components=1
+    rm -f "$arqpostgres"
+    # baixar_dbeaver
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_python() {
+    cd "$DEVAPP_HOME" || exit
+    if [ -d "$PYTHON_HOME" ]; then
+        rm -rf "$PYTHON_HOME"
+    fi
+    mkdir -p "$PYTHON_HOME"
+    wget --no-check-certificate "$downpython" -O "$arqpython"
+    tar -xzf "$arqpython" -C "$PYTHON_HOME" --strip-components=1
+    rm -f "$arqpython"
+    "$PYTHON_HOME/bin/python3" -m ensurepip --upgrade # Esse comando garante que o PIP esteja instalado e pronto para uso portátil.
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_yed() {
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downyed" -O "$arqyed"
+    if [ -d "$YED_HOME" ]; then
+        rm -rf "$YED_HOME"
+    fi
+    unzip -q "$arqyed" --strip-components=1
+    rm -f "$arqyed"
+    mv "$nomeyed" "yed"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+exec_yed() {
+    if [ ! -d "$YED_HOME" ]; then # Verifica se o diretório existe.
+        read -p "Pressione [Enter] para voltar..."
+        return
+    fi
+    cd "$YED_HOME" || exit
+    "$JAVA_HOME/bin/java" -jar "yed.jar" & # O '&' no final faz o programa rodar em segundo plano.
+    sleep 1
+    cd "$DEVAPP_HOME"
+}
+
+baixar_neo4j() {
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downneo4j" -O "$arqneo4j"
+    if [ -d "$NEO4J_HOME" ] || [ -d "neo4j" ]; then
+        rm -rf "$NEO4J_HOME" "neo4j"
+    fi
+    tar -xzf "$arqneo4j" --strip-components=1
+    rm -f "$arqneo4j"
+    mv "$nomeneo4j" "neo4j"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_mongodb() {
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downmongodb" -O "$arqmongodb"
+    if [ -d "$MONGODB_HOME" ]; then
+        rm -rf "$MONGODB_HOME"
+    fi
+    mkdir -p "$MONGODB_HOME/data"
+    mkdir -p "$MONGODB_HOME/log"
+    tar -xzf "$arqmongodb" -C "$MONGODB_HOME" --strip-components=1
+    rm -f "$arqmongodb"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_mongosh() {
+    cd "$DEVAPP_HOME" || exit
+    wget --no-check-certificate "$downmongosh" -O "$arqmongosh"
+    if [ -d "$MONGOSH_HOME" ] || [ -d "mongosh" ]; then
+        rm -rf "$MONGOSH_HOME" "mongosh"
+    fi
+    tar -xzf "$arqmongosh" --strip-components=1
+    rm -f "$arqmongosh"
+    mv "$nomemongosh" "mongosh"
+    chmod +x "mongosh/bin/mongosh"
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+
+baixar_putty() {
+    # $DEVAPP_HOME
+    cd "$DEVAPP_HOME" || exit
+    mkdir -p "$PUTTY_HOME"
+    wget --no-check-certificate "$downputty" -O "$PUTTY_HOME/putty"
+    chmod +x "$PUTTY_HOME/putty"
+    read -p "Pressione [Enter] para voltar..."
 }
