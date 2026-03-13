@@ -202,7 +202,7 @@ while true; do
         1) menu_executar ;;
         2) menu_instalar ;;
         3) menu_auxiliares ;;
-        *) echo "Opção inválida: '$UserInput'. Tente novamente."; sleep 2 ;;
+        *) echo "Opção inválida. Tente novamente."; sleep 2 ;;
     esac
 done
 
@@ -229,7 +229,7 @@ menu_executar() {
         echo "( 71 ) POSTMAN"
         echo "( 72 ) INSOMNIA"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
-        read -p "Escolha uma opcao: " UserInput
+        read -p "Escolha uma opcao: $UserInput"
         echo ""
         tput sgr0 
         clear
@@ -284,7 +284,7 @@ menu_instalar() {
         echo "( 7 ) Instalar o PYTHON"
         echo "( 8 ) Instalar o NotepadNEXT"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
-        read -p "Escolha uma opcao: " UserInput
+        read -p "Escolha uma opcao: $UserInput"
         echo ""
         tput sgr0 
         clear
@@ -311,7 +311,7 @@ menu_instalar() {
             6) baixar_putty ;;
             7) baixar_python ;;
             8) baixar_notepadnext ;;
-            *) echo "Opção inválida: '$UserInput'. Tente novamente."; sleep 2 ;;
+            *) echo "Opção inválida. Tente novamente."; sleep 2 ;;
         esac
     done
 }
@@ -334,7 +334,7 @@ menu_auxiliares() {
         echo "( 8 ) Abrir DB Diagram"
         echo "( 9 ) Abrir Creately"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
-        read -p "Escolha uma opcao: " UserInput
+        read -p "Escolha uma opcao: $UserInput"
         echo ""
         tput sgr0 
         clear
