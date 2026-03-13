@@ -156,13 +156,12 @@ export PGUSER="postgres"
 export PGPORT="5439"
 export PGLOCALEDIR="$POSTGRES_HOME/share/locale"
 
-# ==========================================================
-export PATH="$DEVAPP_HOME:$JAVA_HOME/bin:$MAVEN_HOME/bin:$NODE_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$VSCODE_HOME/bin:$NOTEPAD_NEXT_HOME/bin:$GIT_HOME/bin:$PYTHON_HOME/bin:$NEO4J_HOME/bin:$MONGODB_HOME/bin:$MONGOSH_HOME/bin:$PUTTY_HOME/bin"
-export PATH="$DEVAPP_HOME:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools"
-export PATH="$DEVAPP_HOME:$POSTGRES_HOME/bin"
-export PATH="$DEVAPP_HOME:$FLUTTER_HOME/bin"
-export PATH="$DEVAPP_HOME:$GRADLE_HOME/bin"
-export PATH="$DEVAPP_HOME:$DOTNET_HOME:$DOTNET_ROOT:"
+export PATH="$DEVAPP_HOME:$JAVA_HOME/bin:$MAVEN_HOME/bin:$NODE_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$VSCODE_HOME/bin:$NOTEPAD_NEXT_HOME/bin:$GIT_HOME/bin:$PYTHON_HOME/bin:$NEO4J_HOME/bin:$MONGODB_HOME/bin:$MONGOSH_HOME/bin:$PUTTY_HOME/bin:$PATH"
+export PATH="$DEVAPP_HOME:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
+export PATH="$DEVAPP_HOME:$POSTGRES_HOME/bin:$PATH"
+export PATH="$DEVAPP_HOME:$FLUTTER_HOME/bin:$PATH"
+export PATH="$DEVAPP_HOME:$GRADLE_HOME/bin:$PATH"
+export PATH="$DEVAPP_HOME:$DOTNET_HOME:$DOTNET_ROOT:$PATH"
 export PATH="$DEVAPP_HOME:$PATH"
 
 show_menu() {
@@ -304,25 +303,25 @@ menu_instalar() {
 
         case $UserInput in
             0) return ;;
-            1) baixar_jdk ;; # ok
-            11) baixar_netbeans ;; # ok
-            2) baixar_vscode ;; # ok
-            3) baixar_node ;; # ok
-            31) baixar_git ;; # ok
-            4) baixar_sdk_android ;; # ok
-            41) baixar_android_studio ;; # ok
-            42) baixar_flutter_sdk ;; # ok
-            43) baixar_gradle ;; # ok
-            5) baixar_postgresql ;; # ok
-            50) baixar_dbeaver ;; # ok
-            51) baixar_mysql ;; # ok
-            52) baixar_mariadb ;; # ok
-            53) baixar_neo4j ;; # ok
-            54) baixar_mongodb ;; # ok
-            541) baixar_mongosh ;; # ok
-            6) baixar_putty ;; # ok
-            7) baixar_python ;; # ok
-            8) baixar_notepadnext ;; # ok
+            1) baixar_jdk ;;
+            11) baixar_netbeans ;;
+            2) baixar_vscode ;;
+            3) baixar_node ;;
+            31) baixar_git ;;
+            4) baixar_sdk_android ;;
+            41) baixar_android_studio ;;
+            42) baixar_flutter_sdk ;;
+            43) baixar_gradle ;;
+            5) baixar_postgresql ;;
+            50) baixar_dbeaver ;;
+            51) baixar_mysql ;;
+            52) baixar_mariadb ;;
+            53) baixar_neo4j ;;
+            54) baixar_mongodb ;;
+            541) baixar_mongosh ;;
+            6) baixar_putty ;;
+            7) baixar_python ;;
+            8) baixar_notepadnext ;;
             *) echo "Opção inválida: '$UserInput'. Tente novamente."; sleep 2 ;;
         esac
     done
@@ -417,15 +416,12 @@ abrir_creately() {
 }
 
 # execuções do menu_executar
-exec_vscode() {
-    if [ -f "$VSCODE_HOME/bin/code" ]; then
-        echo "Iniciando VS Code..."
-        
-        "$VSCODE_HOME/bin/code" \                         # Executamos o VS Code com as pastas de extensões e dados dentro do projeto,
-            --extensions-dir "$VSCODE_HOME/extensions" \  # O "&" no final é fundamental: ele faz o VS Code rodar em segundo plano.
+exec_vscode() {                             # Executamos o VS Code com as pastas de extensões e dados dentro do projeto,
+    if [ -f "$VSCODE_HOME/bin/code" ]; then # O "&" no final é fundamental: ele faz o VS Code rodar em segundo plano.
+        "$VSCODE_HOME/bin/code" \
+            --extensions-dir "$VSCODE_HOME/extensions" \
             --extensions-dir "$VSCODE_HOME/extensions" \
             --user-data-dir "$VSCODE_HOME/userdir" &
-            
     else
         tput setab 1
         tput setaf 7
@@ -440,11 +436,7 @@ exec_vscode() {
 
 exec_netbeans() {
     if [ -f "$NETBEANS_HOME/bin/netbeans" ]; then
-        echo "Iniciando NetBeans..."
-        
-        "$NETBEANS_HOME/bin/netbeans" --jdkhome "$JAVA_HOME" &  # O parâmetro --jdkhome funciona igual no Linux.
-                                                                # Usamos o "&" para que o NetBeans abra em uma nova linha de processo e não bloqueie o seu menu.
-        
+        "$NETBEANS_HOME/bin/netbeans" --jdkhome "$JAVA_HOME" &  # O parâmetro --jdkhome funciona igual no Linux. E usamos o "&" para que o NetBeans abra um novo processo para não poluir o menu.
     else
         tput setab 1
         tput setaf 7
@@ -489,7 +481,7 @@ exec_android_studio() {
 
 exec_notepadnext() {
     if [ -f "$NOTEPAD_NEXT_HOME/notepadnext" ]; then # No Linux, tentamos abrir editores comuns se o Notepad++ não existir
-        "$NOTEPAD_NEXT_HOME/notepadnext" & # Iniciando NotepadNext...
+        "$NOTEPAD_NEXT_HOME/notepadnext" &
     elif command -v gedit >/dev/null 2>&1; then
         gedit &
     elif command -v mousepad >/dev/null 2>&1; then
@@ -501,10 +493,7 @@ exec_notepadnext() {
 
 exec_postman() {
     if [ -f "$POSTMAN_HOME/Postman" ]; then
-        echo "Iniciando Postman..."
-
         "$POSTMAN_HOME/Postman" > /dev/null 2>&1 &
-        
     else
         tput setab 1
         tput setaf 7
@@ -515,17 +504,13 @@ exec_postman() {
         tput sgr0
         echo ""
         read -p "Pressione [Enter] para continuar..."
-
         baixa_postman 
     fi
 }
 
 exec_insomnia() {
-    if [ -f "$DEVAPP_HOME/insomnia/insomnia" ]; then  # No Linux, o executável costuma se chamar 'insomnia'
-        echo "Iniciando Insomnia..."                  # Ajuste o caminho conforme a pasta onde você o descompacta
-
+    if [ -f "$DEVAPP_HOME/insomnia/insomnia" ]; then
         "$DEVAPP_HOME/insomnia/insomnia" > /dev/null 2>&1 &
-        
     else
         tput setab 1
         tput setaf 7
@@ -536,23 +521,19 @@ exec_insomnia() {
         tput sgr0
         echo ""
         read -p "Pressione [Enter] para continuar..."
-
         baixa_insomnia 
     fi
 }
 
 exec_neo4j() {
     if [ -f "$NEO4J_HOME/bin/neo4j" ]; then
-        echo "Iniciando Neo4j no Console..."
-
         if command -v gnome-terminal >/dev/null 2>&1; then                               # O comando 'console' funciona igual ao Windows, mantendo o processo
             gnome-terminal --title="NEO4J CONSOLE" -- "$NEO4J_HOME/bin/neo4j" console &  # visível. Usamos o "gnome-terminal" ou uma nova instância para
         else                                                                             # que o banco de dados não trave o seu menu principal.
             "$NEO4J_HOME/bin/neo4j" console &
             echo "Neo4j rodando em segundo plano (Background)."  # Caso não tenha interface gráfica ou terminal específico,
             sleep 2                                              # roda em segundo plano e avisa o usuário.
-        fi
-        
+        fi 
     else
         tput setab 1
         tput setaf 7
@@ -567,10 +548,7 @@ exec_neo4j() {
 
 exec_mongodb() {
     if [ -f "$MONGODB_HOME/bin/mongod" ]; then
-        echo "Iniciando MongoDB Server..."
-
         mkdir -p "$MONGODB_HOME/data"
-
         if command -v gnome-terminal >/dev/null 2>&1; then                                                         # No Linux, tentamos abrir em um novo terminal para você ver os logs.
             gnome-terminal --title="MONGODB SERVER" -- "$MONGODB_HOME/bin/mongod" --dbpath "$MONGODB_HOME/data" &  # O parâmetro --dbpath funciona igual ao Windows.
         else
@@ -578,7 +556,6 @@ exec_mongodb() {
             echo "MongoDB iniciado em segundo plano. Logs em: $MONGODB_HOME/mongodb.log"
             sleep 2
         fi
-        
     else
         tput setab 1
         tput setaf 7
@@ -593,14 +570,11 @@ exec_mongodb() {
 
 exec_mongosh() {
     if [ -f "$MONGOSH_HOME/bin/mongosh" ]; then
-        echo "Iniciando MongoDB Shell..."
         echo "Conectando ao servidor local (padrão)..."
         echo ""
-
         if command -v gnome-terminal >/dev/null 2>&1; then
             gnome-terminal --title="MongoSH" -- "$MONGOSH_HOME/bin/mongosh" &
         fi
-
     else
         tput setab 1
         tput setaf 7
@@ -615,10 +589,7 @@ exec_mongosh() {
 
 exec_putty() {
     if [ -f "$PUTTY_HOME/putty" ]; then
-        echo "Iniciando PuTTY..."
-
-        "$PUTTY_HOME/putty" &  # O "&" no final garante que a interface gráfica do PuTTY abra
-                               # sem travar o terminal onde o seu menu está rodando.
+        "$PUTTY_HOME/putty" &  # O "&" no final garante que a interface gráfica do PuTTY abra em segundo plano
     else
         tput setab 1
         tput setaf 7
@@ -635,9 +606,7 @@ exec_putty() {
 
 exec_mysql() {
     if [ -f "$MYSQL_HOME/bin/mysqld" ]; then
-
         mkdir -p "$MYSQL_HOME/data"
-
         if command -v gnome-terminal >/dev/null 2>&1; then
             gnome-terminal --title="MYSQL SERVER (Porta 3360)" -- bash -c "
                 echo 'ATENCAO';
@@ -676,9 +645,7 @@ exec_mysql() {
 
 exec_mariadb() {
     if [ -f "$MARIADB_HOME/bin/mysqld" ]; then
-
         mkdir -p "$MARIADB_HOME/data"
-
         if command -v gnome-terminal >/dev/null 2>&1; then
             gnome-terminal --title="MARIADB SERVER (Porta 3360)" -- bash -c "
                 echo 'ATENCAO'
@@ -688,7 +655,6 @@ exec_mariadb() {
                 echo '---------------------------------------'
                 echo 'Pressione Enter para iniciar o servidor...'
                 read
-                
                 # Inicializa os arquivos do banco apenas se a pasta estiver vazia
                 if [ ! -d '$MARIADB_HOME/data/mysql' ]; then
                     echo 'Inicializando o banco de dados...'
@@ -702,7 +668,6 @@ exec_mariadb() {
                         '$MARIADB_HOME/bin/mysql_install_db' --datadir='$MARIADB_HOME/data'
                     fi
                 fi
-
                 # Executa o MariaDB Server (--console é padrão no terminal interativo no Linux)
                 '$MARIADB_HOME/bin/mysqld' --datadir='$MARIADB_HOME/data' --port=3360
             " &
@@ -711,7 +676,6 @@ exec_mariadb() {
             "$MARIADB_HOME/bin/mysqld" --datadir="$MARIADB_HOME/data" --port=3360 > "$MARIADB_HOME/mariadb.log" 2>&1 &
             sleep 2
         fi
-        
     else
         tput setab 1
         tput setaf 7
@@ -750,7 +714,6 @@ exec_postgres() {
         read -p "Pressione [Enter] para voltar ao menu..."
         return # Sai da função e volta pro menu
     fi
-
     echo "Postgres executável encontrado."
 
     if [ -d "$POSTGRES_HOME/data" ] && [ "$(ls -A "$POSTGRES_HOME/data" 2>/dev/null)" ]; then
@@ -758,11 +721,8 @@ exec_postgres() {
     else
         echo "Primeira execução do Postgres. Inicializando cluster..."
         "$POSTGRES_HOME/bin/initdb" -U postgres -A trust -D "$POSTGRES_HOME/data"  # No Linux, é obrigatório passar o diretório -D para o initdb
-    fi
-
-    pkill -u $(whoami) -x postgres 2>/dev/null  # Usamos o $(whoami) para garantir que vamos matar apenas o Postgres do SEU usuário,
-                                                # sem afetar um possível Postgres do sistema Linux.
-
+    fi                                         # Usamos o $(whoami) para garantir que vamos matar apenas o Postgres do SEU usuário,
+    pkill -u $(whoami) -x postgres 2>/dev/null # sem afetar um possível Postgres do sistema Linux.
     if command -v gnome-terminal >/dev/null 2>&1; then  # 4. Inicia em uma nova janela
         gnome-terminal --title="POSTGRES SERVER (Porta $PGPORT)" -- bash -c "
             echo 'ATENCAO'
@@ -771,14 +731,11 @@ exec_postgres() {
             echo 'O postgres estara rodando na porta $PGPORT'
             echo '---------------------------------------'
             read -p 'Pressione Enter para INICIAR o servidor...'
-            
             # Start
             '$POSTGRES_HOME/bin/pg_ctl' -D '$POSTGRES_HOME/data' -l '$POSTGRES_HOME/logfile' start
-            
             echo ''
             echo '>>> PARA FECHAR O BANCO DE DADOS CORRETAMENTE, CONTINUE ABAIXO <<<'
             read -p 'Pressione Enter para PARAR o Postgres e fechar a janela...'
-            
             # Stop
             '$POSTGRES_HOME/bin/pg_ctl' -D '$POSTGRES_HOME/data' stop
         " &
@@ -793,78 +750,79 @@ exec_postgres() {
 
 ## =======================================================
 # SEÇÃO DE INSTALAÇÃO DE EXTENÇÕES NO VSCODE
-## =======================================================
 
 # execuções do menu_instalar
-exec_inst_ext_vscode
-# executa o vscode indicando o caminho das extensões:
-# mais em https://code.visualstudio.com/docs/editor/extension-marketplace#_common-questions
-# mais em https://code.visualstudio.com/docs/editor/command-line#
-# mais em https://code.visualstudio.com/docs/editor/command-line#_advanced-cli-options
-# echo $DEVAPP_HOME
-echo "---------------------------------------"
-echo "Instalação de extensões do VSCODE"
-echo "Em $VSCODE_HOME"
-echo "---------------------------------------"
-# pause
-CODE_BIN="$VSCODE_HOME/bin/code"
-EXTENSIONS=(
-    "christian-kohler.npm-intellisense"
-    "christian-kohler.path-intellisense"
-    "dbaeumer.vscode-eslint"
-    "editorconfig.editorconfig"
-    "esbenp.prettier-vscode"
-    "formulahendry.auto-close-tag"
-    "formulahendry.auto-rename-tag"
-    "formulahendry.code-runner"
-    "formulahendry.dotnet"
-    "grogdunn.netbeans-keybindings"
-    "hollowtree.vue-snippets"
-    "jakewilson.vscode-cdnjs"
-    "jmrog.vscode-nuget-package-manager"
-    "juhahinkula.thymeleaf"
-    "mrmlnc.vscode-scss"
-    "ms-dotnettools.csharp"
-    "ms-dotnettools.vscode-dotnet-runtime"
-    "obrejla.netbeans-light-theme"
-    "octref.vetur"
-    "pkief.material-icon-theme"
-    "redhat.fabric8-analytics"
-    "redhat.java"
-    "redhat.vscode-community-server-connector"
-    "redhat.vscode-rsp-ui"
-    "redhat.vscode-server-connector"
-    "redhat.vscode-xml"
-    "ritwickdey.liveserver"
-    "visualstudioexptteam.intellicode-api-usage-examples"
-    "visualstudioexptteam.vscodeintellicode"
-    "vmware.vscode-boot-dev-pack"
-    "vmware.vscode-spring-boot"
-    "vscjava.vscode-java-debug"
-    "vscjava.vscode-java-dependency"
-    "vscjava.vscode-java-pack"
-    "vscjava.vscode-java-test"
-    "vscjava.vscode-maven"
-    "vscjava.vscode-spring-boot-dashboard"
-    "vscjava.vscode-spring-initializr"
-    "vscode-icons-team.vscode-icons"
-    "vue.volar"
-    "yzhang.markdown-all-in-one"
-    "zignd.html-css-class-completion"
-    "wscats.vue"
-    "mechatroner.rainbow-csv"
-    "samuel-weinhardt.vscode-jsp-lang"
-    "alexisvt.flutter-snippets"
-    "dart-code.dart-code"
-    "dart-code.flutter"
-    "rexthedev.flutter-preview"
-)
-echo "Iniciando a instalação de ${#EXTENSIONS[@]} extensões..."
-for ext in "${EXTENSIONS[@]}"; do # 3. Loop para instalar cada uma
-    echo "Instalando: $ext"
-    "$CODE_BIN" --extensions-dir "$VSCODE_HOME/extensions" --user-data-dir "$VSCODE_HOME/userdir" --install-extension "$ext"
-done
-read -p "Pressione [Enter] para voltar ao menu..."
+exec_inst_ext_vscode() {
+    # executa o vscode indicando o caminho das extensões:
+    # mais em https://code.visualstudio.com/docs/editor/extension-marketplace#_common-questions
+    # mais em https://code.visualstudio.com/docs/editor/command-line#
+    # mais em https://code.visualstudio.com/docs/editor/command-line#_advanced-cli-options
+    # echo $DEVAPP_HOME
+    echo "---------------------------------------"
+    echo "Instalação de extensões do VSCODE"
+    echo "Em $VSCODE_HOME"
+    echo "---------------------------------------"
+    # pause
+    CODE_BIN="$VSCODE_HOME/bin/code"
+    EXTENSIONS=(
+        "christian-kohler.npm-intellisense"
+        "christian-kohler.path-intellisense"
+        "dbaeumer.vscode-eslint"
+        "editorconfig.editorconfig"
+        "esbenp.prettier-vscode"
+        "formulahendry.auto-close-tag"
+        "formulahendry.auto-rename-tag"
+        "formulahendry.code-runner"
+        "formulahendry.dotnet"
+        "grogdunn.netbeans-keybindings"
+        "hollowtree.vue-snippets"
+        "jakewilson.vscode-cdnjs"
+        "jmrog.vscode-nuget-package-manager"
+        "juhahinkula.thymeleaf"
+        "mrmlnc.vscode-scss"
+        "ms-dotnettools.csharp"
+        "ms-dotnettools.vscode-dotnet-runtime"
+        "obrejla.netbeans-light-theme"
+        "octref.vetur"
+        "pkief.material-icon-theme"
+        "redhat.fabric8-analytics"
+        "redhat.java"
+        "redhat.vscode-community-server-connector"
+        "redhat.vscode-rsp-ui"
+        "redhat.vscode-server-connector"
+        "redhat.vscode-xml"
+        "ritwickdey.liveserver"
+        "visualstudioexptteam.intellicode-api-usage-examples"
+        "visualstudioexptteam.vscodeintellicode"
+        "vmware.vscode-boot-dev-pack"
+        "vmware.vscode-spring-boot"
+        "vscjava.vscode-java-debug"
+        "vscjava.vscode-java-dependency"
+        "vscjava.vscode-java-pack"
+        "vscjava.vscode-java-test"
+        "vscjava.vscode-maven"
+        "vscjava.vscode-spring-boot-dashboard"
+        "vscjava.vscode-spring-initializr"
+        "vscode-icons-team.vscode-icons"
+        "vue.volar"
+        "yzhang.markdown-all-in-one"
+        "zignd.html-css-class-completion"
+        "wscats.vue"
+        "mechatroner.rainbow-csv"
+        "samuel-weinhardt.vscode-jsp-lang"
+        "alexisvt.flutter-snippets"
+        "dart-code.dart-code"
+        "dart-code.flutter"
+        "rexthedev.flutter-preview"
+    )
+    echo "Iniciando a instalação de ${#EXTENSIONS[@]} extensões..."
+    for ext in "${EXTENSIONS[@]}"; do # 3. Loop para instalar cada uma
+        echo "Instalando: $ext"
+        "$CODE_BIN" --extensions-dir "$VSCODE_HOME/extensions" --user-data-dir "$VSCODE_HOME/userdir" --install-extension "$ext"
+    done
+    read -p "Pressione [Enter] para voltar ao menu..."
+}
+## =======================================================
 
 exec_instal_vue() {
     # echo $DEVAPP_HOME
@@ -879,7 +837,6 @@ exec_instal_vue() {
 ## =======================================================
 # SEÇÃO DE INSTALAÇÃO DE PROGRAMAS
 ## =======================================================
-
 baixar_vscode() {
     cd "$VSCODE_HOME" || exit # garante que você está na pasta do projeto...
     wget --no-check-certificate "$downvscode"
@@ -945,7 +902,7 @@ baixar_node() {
     if [ -d "node" ]; then
         rm -rf "node"
     fi
-    tar -xJf "$arqnode" --strip-components=1
+    tar -xJf "$arqnode"
     rm -f "$arqnode"
     mv "$nomenode" "node"
     export PATH="$DEVAPP_HOME/node/bin:$PATH" # Configurando ambiente para instalação do Vue.js...
@@ -959,7 +916,7 @@ baixar_jdk() {
         rm -rf "jdk"
     fi
     wget --no-check-certificate "$downjdk" -O "$arqjdk"
-    tar -xzf "$arqjdk" --strip-components=1
+    tar -xzf "$arqjdk"
     rm -f "$arqjdk"
     mv "$nomejdk" "jdk"
     baixar_maven
@@ -971,7 +928,7 @@ baixar_maven() {
     if [ -d "maven" ]; then
         rm -rf "maven"
     fi
-    tar -xzf "$arqmaven" --strip-components=1
+    tar -xzf "$arqmaven"
     rm -f "$arqmaven"
     mv "$nomemaven" "maven"
     read -p "Pressione [Enter] para voltar ao menu..."
@@ -1053,7 +1010,7 @@ baixar_mysql() {
     if [ -d "mysql" ]; then
         rm -rf "mysql"
     fi
-    tar -xJf "$arqmysql" --strip-components=1
+    tar -xJf "$arqmysql"
     rm -f "$arqmysql"
     mv "$nomemysql" "mysql"
     read -p "Pressione [Enter] para voltar ao menu..."
@@ -1065,7 +1022,7 @@ baixar_mariadb() {
     if [ -d "mariadb" ]; then
         rm -rf "mariadb"
     fi
-    tar -xzf "$arqmariadb" --strip-components=1
+    tar -xzf "$arqmariadb"
     rm -f "$arqmariadb"
     mv "$nomemariadb" "mariadb"
     read -p "Pressione [Enter] para voltar ao menu..."
@@ -1125,7 +1082,7 @@ baixar_neo4j() {
     if [ -d "$NEO4J_HOME" ] || [ -d "neo4j" ]; then
         rm -rf "$NEO4J_HOME" "neo4j"
     fi
-    tar -xzf "$arqneo4j" --strip-components=1
+    tar -xzf "$arqneo4j"
     rm -f "$arqneo4j"
     mv "$nomeneo4j" "neo4j"
     read -p "Pressione [Enter] para voltar ao menu..."
@@ -1158,7 +1115,6 @@ baixar_mongosh() {
 }
 
 baixar_putty() {
-    # $DEVAPP_HOME
     cd "$DEVAPP_HOME" || exit
     mkdir -p "$PUTTY_HOME"
     wget --no-check-certificate "$downputty" -O "$PUTTY_HOME/putty"

@@ -1,7 +1,7 @@
 {
   "workbench.colorTheme": "NetBeans Light Theme",
-  "java.jdt.ls.java.home": "..\\jdk",
-  "maven.executable.path": "${env:MAVEN_HOME}\\bin\\mvn",
+  "java.jdt.ls.java.home": "../jdk",
+  "maven.executable.path": "${env:MAVEN_HOME}/bin/mvn",
   "editor.tabSize": 1,
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -89,27 +89,14 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "terminal.integrated.fontSize": 14,
-  "terminal.integrated.profiles.windows": {
-    "PowerShell": {
-      "source": "PowerShell",
-      "icon": "terminal-powershell",
-      "args": ["-ExecutionPolicy", "Bypass"]
-      //"args": ["-ExecutionPolicy", "Restricted"]
-    },
-    "Command Prompt": {
-      "path": [
-        "${env:windir}\\Sysnative\\cmd.exe",
-        "${env:windir}\\System32\\cmd.exe"
-      ],
-      "args": [],
-      "icon": "terminal-cmd"
-    },
-    "Git Bash": {
-      "source": "Git Bash"
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash"
     }
   },
-  "terminal.integrated.defaultProfile.windows": "Command Prompt",
-  "emulator.emulatorPath": "%ANDROID_HOME%\\emulator",
+  "terminal.integrated.defaultProfile.windows": "bash",
+  "emulator.emulatorPath": "${env:ANDROID_HOME}/emulator",
   "files.associations": {
     "*.html": "html"
   },
@@ -118,9 +105,9 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "liveServer.settings.CustomBrowser": "microsoft-edge",
+  "liveServer.settings.CustomBrowser": "firefox",
   "maui.configuration.javaSdkPreferredPath": "${env:JAVA_HOME}",
-  "maui.configuration.androidSdkPreferredPath": "..\\android\\sdk",
+  "maui.configuration.androidSdkPreferredPath": "../android/sdk",
   "emmet.includeLanguages": {
     "jsp": "html"
   },
