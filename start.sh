@@ -172,8 +172,7 @@ show_menu() {
     echo "-------------------------------------------------------"
     echo "    DEVAPP-LE v-1.0 "
     echo ""
-    echo "           Professor Rômulo (criador do DEVAPP original) "
-    echo "           Pedro Henrique A. Herzog (pedrohaherzog-2005) "
+    echo "         Pedro Henrique A. Herzog (pedrohaherzog-2005) "
     echo ""
     echo "                                   $now "
     echo "-------------------------------------------------------"
@@ -191,18 +190,14 @@ show_menu() {
 
 while true; do
     show_menu
-    
-    read -p "Escolha uma opcao: " UserInput
-    
+    read -p "Escolha uma opcao: $UserInput"
     echo ""
     clear
     echo "Opcao escolhida = $UserInput"
     echo ""
-
     case $UserInput in
         0) tput sgr0
            clear
-           echo "Saindo..."
            exit 0 ;;
         1) menu_executar ;;
         2) menu_instalar ;;
@@ -216,7 +211,6 @@ menu_executar() {
         tput setab 3
         tput setaf 0
         clear
-
         echo "--- OPÇÕES DE EXECUÇÃO ------------------------------"
         echo "( 0 ) Voltar"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
@@ -236,13 +230,11 @@ menu_executar() {
         echo "( 72 ) INSOMNIA"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
         read -p "Escolha uma opcao: " UserInput
-        
         echo ""
         tput sgr0 
         clear
         echo "Opcao escolhida = $UserInput"
         echo ""
-
         case $UserInput in
             0) return ;;
             1) exec_netbeans ;;
@@ -269,7 +261,6 @@ menu_instalar() {
         tput setab 2
         tput setaf 0
         clear
-
         echo "--- OPÇÕES DE INSTALAÇÃO ------------------------------"
         echo "( 0 ) Voltar"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
@@ -294,13 +285,11 @@ menu_instalar() {
         echo "( 8 ) Instalar o NotepadNEXT"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
         read -p "Escolha uma opcao: " UserInput
-        
         echo ""
         tput sgr0 
         clear
         echo "Opcao escolhida = $UserInput"
         echo ""
-
         case $UserInput in
             0) return ;;
             1) baixar_jdk ;;
@@ -332,7 +321,6 @@ menu_auxiliares() {
         tput setab 6
         tput setaf 0
         clear
-
         echo "--- OPÇÕES AUXILIARES ------------------------------"
         echo "( 0 ) Voltar"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
@@ -347,7 +335,6 @@ menu_auxiliares() {
         echo "( 9 ) Abrir Creately"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
         read -p "Escolha uma opcao: " UserInput
-        
         echo ""
         tput sgr0 
         clear
