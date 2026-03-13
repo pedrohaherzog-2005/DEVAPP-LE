@@ -164,46 +164,6 @@ export PATH="$DEVAPP_HOME:$GRADLE_HOME/bin:$PATH"
 export PATH="$DEVAPP_HOME:$DOTNET_HOME:$DOTNET_ROOT:$PATH"
 export PATH="$DEVAPP_HOME:$PATH"
 
-show_menu() {
-    tput setab 4
-    tput setaf 7
-    clear
-    echo "-------------------------------------------------------"
-    echo "    DEVAPP-LE v-1.0 "
-    echo ""
-    echo "         Pedro Henrique A. Herzog (pedrohaherzog-2005) "
-    echo ""
-    echo "                                   $now "
-    echo "-------------------------------------------------------"
-    echo ""
-    echo "-->  SEMPRE EXECUTE OS PROGRAMAS AQUI (\"start.sh\") <--"
-    echo "" 
-    echo "======================================================="
-    echo "--- OPCOES --------------------------------------------"
-    echo "( 0 ) SAIR"
-    echo "( 1 ) PROGRAMAÇÃO E BANCO DE DADOS"
-    echo "( 2 ) INSTALAÇÕES"
-    echo "( 3 ) AUXILIARES"
-    echo "======================================================="
-}
-while true; do
-    show_menu
-    read -p "Escolha uma opcao: " UserInput
-    echo ""
-    clear
-    echo "Opcao escolhida = $UserInput"
-    echo ""
-    case $UserInput in
-        0) tput sgr0
-           clear
-           exit 0 ;;
-        1) menu_executar ;;
-        2) menu_instalar ;;
-        3) menu_auxiliares ;;
-        *) echo "Opção inválida. Tente novamente."; sleep 2 ;;
-    esac
-done
-
 menu_executar() {
     while true; do
         tput setab 3
@@ -1107,3 +1067,43 @@ baixar_putty() {
     chmod +x "$PUTTY_HOME/putty"
     read -p "Pressione [Enter] para voltar..."
 }
+
+show_menu() {
+    tput setab 4
+    tput setaf 7
+    clear
+    echo "-------------------------------------------------------"
+    echo "    DEVAPP-LE v-1.0 "
+    echo ""
+    echo "         Pedro Henrique A. Herzog (pedrohaherzog-2005) "
+    echo ""
+    echo "                                   $now "
+    echo "-------------------------------------------------------"
+    echo ""
+    echo "-->  SEMPRE EXECUTE OS PROGRAMAS AQUI (\"start.sh\") <--"
+    echo "" 
+    echo "======================================================="
+    echo "--- OPCOES --------------------------------------------"
+    echo "( 0 ) SAIR"
+    echo "( 1 ) PROGRAMAÇÃO E BANCO DE DADOS"
+    echo "( 2 ) INSTALAÇÕES"
+    echo "( 3 ) AUXILIARES"
+    echo "======================================================="
+}
+while true; do
+    show_menu
+    read -p "Escolha uma opcao: " UserInput
+    echo ""
+    clear
+    echo "Opcao escolhida = $UserInput"
+    echo ""
+    case $UserInput in
+        0) tput sgr0
+           clear
+           exit 0 ;;
+        1) menu_executar ;;
+        2) menu_instalar ;;
+        3) menu_auxiliares ;;
+        *) echo "Opção inválida. Tente novamente."; sleep 2 ;;
+    esac
+done
