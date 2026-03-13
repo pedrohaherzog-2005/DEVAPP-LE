@@ -12,7 +12,7 @@ DEVAPP_HOME=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
 # export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/5437499feb04f7a586f677b155b039bc2b3669eb/code-stable-x64-1718753229.tar.gz"
 # export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/f1a4fb101478ce6ec82fe9627c43efbf9e98c813/code-stable-x64-1731510444.tar.gz"
-export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/03c265b1adee71ac88f833e065f7bb956b60550a/code-stable-x64-1740669146.tar.gz"
+export downvscode="https://code.visualstudio.com/sha/download?build=stable&os=linux-x64"
 export arqvscode="code-stable-x64-1740669146.tar.gz"
 export nomevscode="vscode"
 
@@ -789,7 +789,7 @@ baixar_vscode() {
     tar -xzf "$arqvscode" --strip-components=1 # Extraindo arquivos...
     rm -f "$arqvscode" # Removendo instalador...
     mkdir -p "userdir/User"  # O comando 'mkdir -p' cria a árvore de pastas de uma vez (userdir e User)
-    cp "$DEVAPP_HOME/settings.json" "$VSCODE_HOME/userdir/User/" # Copiando configurações (settings.json)...
+    cp "$DEVAPP_HOME/vscode/userdir/User/settings.json" "$VSCODE_HOME/userdir/User/" # Copiando configurações (settings.json)...
     exec_inst_ext_vscode # Chamamos a função que vai executar e instalar as extensões
 }
 
