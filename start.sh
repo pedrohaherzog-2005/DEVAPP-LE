@@ -12,8 +12,8 @@ DEVAPP_HOME=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
 # export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/5437499feb04f7a586f677b155b039bc2b3669eb/code-stable-x64-1718753229.tar.gz"
 # export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/f1a4fb101478ce6ec82fe9627c43efbf9e98c813/code-stable-x64-1731510444.tar.gz"
-export downvscode="https://code.visualstudio.com/sha/download?build=stable&os=linux-x64"
-export arqvscode="code-stable-x64-1740669146.tar.gz"
+export downvscode="https://update.code.visualstudio.com/latest/linux-x64/stable"
+export arqvscode="code-stable.tar.gz"
 export nomevscode="vscode"
 
 # link dos arquivos -> mais lento
@@ -786,6 +786,14 @@ exec_instal_vue() {
 baixar_vscode() {
     cd "$VSCODE_HOME" || exit # garante que você está na pasta do projeto...
     wget -q --show-progress --no-check-certificate "$downvscode" -O "$arqvscode"
+    if [ ! -s "$arqvscode" ]; then
+        tput setaf 1
+        echo "❌ Erro ao baixar o VS Code. O servidor não respondeu corretamente."
+        tput sgr0
+        rm -f "$arqvscode"
+        read -p "Pressione [Enter] para voltar..."
+        return 1
+    fi
     tar -xzf "$arqvscode" --strip-components=1 # Extraindo arquivos...
     rm -f "$arqvscode" # Removendo instalador...
     mkdir -p "userdir/User"  # O comando 'mkdir -p' cria a árvore de pastas de uma vez (userdir e User)
