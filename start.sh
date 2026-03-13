@@ -785,7 +785,7 @@ exec_instal_vue() {
 ## =======================================================
 baixar_vscode() {
     cd "$VSCODE_HOME" || exit # garante que você está na pasta do projeto...
-    wget -q --show-progress --no-check-certificate "$downvscode" -O "$arqvscode"
+    wget -4 -q --show-progress --no-check-certificate "$downvscode" -O "$arqvscode"
     if [ ! -s "$arqvscode" ]; then
         tput setaf 1
         echo "❌ Erro ao baixar o VS Code. O servidor não respondeu corretamente."
