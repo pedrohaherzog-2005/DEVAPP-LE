@@ -168,7 +168,6 @@ show_menu() {
     tput setab 4
     tput setaf 7
     clear
-
     echo "-------------------------------------------------------"
     echo "    DEVAPP-LE v-1.0 "
     echo ""
@@ -187,10 +186,9 @@ show_menu() {
     echo "( 3 ) AUXILIARES"
     echo "======================================================="
 }
-
 while true; do
     show_menu
-    read -p "Escolha uma opcao: $UserInput"
+    read -p "Escolha uma opcao: " UserInput
     echo ""
     clear
     echo "Opcao escolhida = $UserInput"
@@ -229,7 +227,7 @@ menu_executar() {
         echo "( 71 ) POSTMAN"
         echo "( 72 ) INSOMNIA"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
-        read -p "Escolha uma opcao: $UserInput"
+        read -p "Escolha uma opcao: " UserInput
         echo ""
         tput sgr0 
         clear
@@ -284,7 +282,7 @@ menu_instalar() {
         echo "( 7 ) Instalar o PYTHON"
         echo "( 8 ) Instalar o NotepadNEXT"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
-        read -p "Escolha uma opcao: $UserInput"
+        read -p "Escolha uma opcao: " UserInput
         echo ""
         tput sgr0 
         clear
@@ -334,7 +332,7 @@ menu_auxiliares() {
         echo "( 8 ) Abrir DB Diagram"
         echo "( 9 ) Abrir Creately"
         echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::"
-        read -p "Escolha uma opcao: $UserInput"
+        read -p "Escolha uma opcao: " UserInput
         echo ""
         tput sgr0 
         clear
@@ -354,6 +352,7 @@ menu_auxiliares() {
             9) abrir_creately ;;
             *) echo "Opção inválida"; sleep 1 ;;
         esac
+    done
 }
 
 ## =======================================================
