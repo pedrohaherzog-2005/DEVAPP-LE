@@ -12,7 +12,7 @@ DEVAPP_HOME=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
 # export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/5437499feb04f7a586f677b155b039bc2b3669eb/code-stable-x64-1718753229.tar.gz"
 # export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/f1a4fb101478ce6ec82fe9627c43efbf9e98c813/code-stable-x64-1731510444.tar.gz"
-export downvscode="https://update.code.visualstudio.com/latest/linux-x64/stable"
+export downvscode="https://go.microsoft.com/fwlink/?LinkID=620884"
 export arqvscode="code-stable.tar.gz"
 export nomevscode="vscode"
 
@@ -785,7 +785,7 @@ exec_instal_vue() {
 ## =======================================================
 baixar_vscode() {
     cd "$VSCODE_HOME" || exit # garante que você está na pasta do projeto...
-    wget -4 -q --show-progress --no-check-certificate "$downvscode" -O "$arqvscode"
+    wget -4 -L -q --show-progress --no-check-certificate "$downvscode" -O "$arqvscode"
     if [ ! -s "$arqvscode" ]; then
         tput setaf 1
         echo "❌ Erro ao baixar o VS Code. O servidor não respondeu corretamente."
