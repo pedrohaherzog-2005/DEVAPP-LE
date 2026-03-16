@@ -784,7 +784,8 @@ exec_instal_vue() {
 # SEÇÃO DE INSTALAÇÃO DE PROGRAMAS
 ## =======================================================
 baixar_vscode() {
-    cd "$VSCODE_HOME"
+    mkdir -p "$VSCODE_HOME"
+    cd "$VSCODE_HOME" || exit
     wget -q --show-progress --no-check-certificate "$downvscode" -O "$arqvscode"
     tar -xzf "$arqvscode" --strip-components=1 # Extraindo arquivos...
     rm -f "$arqvscode" # Removendo instalador...
