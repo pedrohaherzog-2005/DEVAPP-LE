@@ -709,7 +709,7 @@ exec_inst_ext_vscode() {
     echo "Em $VSCODE_HOME"
     echo "---------------------------------------"
     # pause
-    CODE_BIN="$VSCODE_HOME/bin/code"
+    CODE_BIN="$VSCODE_HOME/bin"
     EXTENSIONS=(
         "christian-kohler.npm-intellisense"
         "christian-kohler.path-intellisense"
