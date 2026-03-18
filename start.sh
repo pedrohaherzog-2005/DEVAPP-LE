@@ -784,16 +784,13 @@ exec_instal_vue() {
 # SEÇÃO DE INSTALAÇÃO DE PROGRAMAS
 ## =======================================================
 baixar_vscode() {
-    mkdir -p "$DEVAPP_HOME/vscode"
-    cd "$DEVAPP_HOME/vscode" || exit
-    curl -# -k -L "$downvscode" -o "$arqvscode"
+    mkdir -p "$VSCODE_HOME"
+    cd "$VSCODE_HOME" || exit
+    curl -q --show-progress -k -L "$downvscode" -o "$arqvscode"
     tar -xzf "$arqvscode" --strip-components=1 # Extraindo arquivos...
     rm -f "$arqvscode" # Removendo instalador...
     mkdir -p "userdir/User"  # O comando 'mkdir -p' cria a árvore de pastas de uma vez (userdir e User)
-    if [ -f "$DEVAPP_HOME/settings.json" ]; then
-        cp "$DEVAPP_HOME/settings.json" "userdir/User/settings.json"
-        echo "✅ Configurações aplicadas."
-    fi
+    cp "$DEVAPP_HOME/vscode/userdir/User/settings.json" "$VSCODE_HOME/userdir/User/" # Copiando configurações (settings.json)...
     exec_inst_ext_vscode # Chamamos a função que vai executar e instalar as extensões
 }
 
