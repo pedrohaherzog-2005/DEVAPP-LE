@@ -764,7 +764,7 @@ exec_inst_ext_vscode() {
     echo "Iniciando a instalação de ${#EXTENSIONS[@]} extensões..."
     for ext in "${EXTENSIONS[@]}"; do # 3. Loop para instalar cada uma
         echo "Instalando: $ext"
-        "$CODE_BIN" --extensions-dir "$VSCODE_HOME/extensions" --user-data-dir "$VSCODE_HOME/userdir" --install-extension "$ext"
+        "$CODE_BIN" --extensions-dir "$VSCODE_HOME/vscode/extensions" --user-data-dir "$VSCODE_HOME/vscode/userdir" --install-extension "$ext"
     done
     read -p "Pressione [Enter] para voltar ao menu..."
 }
@@ -790,7 +790,7 @@ baixar_vscode() {
     tar -xzf "$arqvscode" --strip-components=1 # Extraindo arquivos...
     rm -f "$arqvscode" # Removendo instalador...
     mkdir -p "userdir/User"  # O comando 'mkdir -p' cria a árvore de pastas de uma vez (userdir e User)
-    cp "$DEVAPP_HOME/vscode/userdir/User/settings.json" "$VSCODE_HOME/userdir/User/" # Copiando configurações (settings.json)...
+    cp "$DEVAPP_HOME/vscode/userdir/User/settings.json" "$VSCODE_HOME/vscode/userdir/User/" # Copiando configurações (settings.json)...
     exec_inst_ext_vscode # Chamamos a função que vai executar e instalar as extensões
 }
 
