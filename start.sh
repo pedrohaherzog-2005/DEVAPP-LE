@@ -786,7 +786,7 @@ exec_instal_vue() {
 baixar_vscode() {
     mkdir -p "$VSCODE_HOME"
     cd "$VSCODE_HOME" || exit
-    curl -q --show-progress -k -L "$downvscode" -o "$arqvscode"
+    wget -q --show-progress --no-check-certificate "$downvscode" -O "$arqvscode"
     tar -xzf "$arqvscode" --strip-components=1 # Extraindo arquivos...
     rm -f "$arqvscode" # Removendo instalador...
     mkdir -p "userdir/User"  # O comando 'mkdir -p' cria a árvore de pastas de uma vez (userdir e User)
