@@ -9,12 +9,7 @@ Ecossistema de desenvolvimento portátil para rodar linguagens e ferramentas de 
 git clone https://github.com/pedrohaherzog-2005/DEVAPP-LE.git && cd DEVAPP-LE && chmod +x start.sh && ./start.sh
 ```
 
-* Depois você só vai precisar rodar esse comando dentro da pasta do DEVAPP:
-```bash
-chmod +x start.sh && ./start.sh
-```
-
-* E caso você escolha baixar o `DEVAPP-LE-main.zip` do projeto, você vai extrair a pasta e abrir o terminal e colocar o seguinte comando abaixo(O mesmo depois de clonar o projeto):
+* Depois, se você precisar executar mais vezes ou baixar o seu .zip e descompactá-lo, entre dentro da pasta do projeto e use o seguinte comando:
 ```bash
 chmod +x start.sh && ./start.sh
 ```
