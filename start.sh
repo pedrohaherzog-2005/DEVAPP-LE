@@ -790,7 +790,14 @@ baixar_vscode() {
     tar -xzf "$arqvscode" --strip-components=1 # Extraindo arquivos...
     rm -f "$arqvscode" # Removendo instalador...
     mkdir -p "userdir/User"  # O comando 'mkdir -p' cria a árvore de pastas de uma vez (userdir e User)
-    cp "$DEVAPP_HOME/vscode/userdir/User/settings.json" "$VSCODE_HOME/userdir/User/" # Copiando configurações (settings.json)...
+    if [ -f "$DEVAPP_HOME/settings.json" ]; then
+        cp "$DEVAPP_HOME/settings.json" "$VSCODE_HOME/userdir/User/settings.json"
+        echo "✅ Configurações (settings.json) aplicadas com sucesso!"
+    else
+        tput setaf 3
+        echo "⚠️ AVISO: Arquivo 'settings.json' não encontrado na raiz do projeto ($DEVAPP_HOME)."
+        tput sgr0
+    fi
     exec_inst_ext_vscode # Chamamos a função que vai executar e instalar as extensões
 }
 
