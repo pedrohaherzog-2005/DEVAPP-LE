@@ -12,7 +12,7 @@ DEVAPP_HOME=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
 # export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/5437499feb04f7a586f677b155b039bc2b3669eb/code-stable-x64-1718753229.tar.gz"
 # export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/f1a4fb101478ce6ec82fe9627c43efbf9e98c813/code-stable-x64-1731510444.tar.gz"
-export downvscode="https://vscode.download.prss.microsoft.com/dbazure/download/stable/03c265b1adee71ac88f833e065f7bb956b60550a/code-stable-x64-1740669146.tar.gz"
+export downvscode="https://code.visualstudio.com/sha/download?build=stable&os=linux-x64"
 export arqvscode="code-stable-x64-1740669146.tar.gz"
 export nomevscode="code"
 
@@ -786,7 +786,15 @@ exec_instal_vue() {
 baixar_vscode() {
     mkdir -p "$VSCODE_HOME"
     cd "$VSCODE_HOME" || exit
-    wget -q --show-progress --no-check-certificate "$downvscode" -O "$arqvscode"
+    curl -4 -L -k -# "$downvscode" -o "$arqvscode"
+    if [ ! -s "$arqvscode" ]; then
+        tput setaf 1
+        echo "❌ ERRO: O download falhou. Verifique a internet ou baixe manualmente."
+        tput sgr0
+        rm -f "$arqvscode"
+        read -p "Pressione [Enter] para voltar ao menu..."
+        return 1
+    fi
     tar -xzf "$arqvscode" --strip-components=1 # Extraindo arquivos...
     rm -f "$arqvscode" # Removendo instalador...
     mkdir -p "userdir/User"  # O comando 'mkdir -p' cria a árvore de pastas de uma vez (userdir e User)
