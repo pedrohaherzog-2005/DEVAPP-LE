@@ -59,9 +59,9 @@ export downgradle="https://services.gradle.org/distributions/gradle-8.12-bin.zip
 export arqgradle="gradle-8.12-bin.zip"
 export nomegradle="gradle-8.12"
 
-export downmaven="https://dlcdn.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.tar.gz"
-export arqmaven="apache-maven-3.9.11-bin.tar.gz"
-export nomemaven="apache-maven-3.9.11"
+export downmaven="https://archive.apache.org/dist/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz"
+export arqmaven="apache-maven-3.9.6-bin.tar.gz"
+export nomemaven="apache-maven-3.9.6"
 
 export downmysql="https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.39-linux-glibc2.28-x86_64.tar.xz"
 export arqmysql="mysql-8.0.39-linux-glibc2.28-x86_64.tar.xz"
@@ -96,7 +96,7 @@ export downmongodb="https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu
 export arqmongodb="mongodb-linux-x86_64-ubuntu2204-8.0.5.tgz"
 export nomemongodb="mongodb-linux-x86_64-ubuntu2204-8.0.5"
 
-export downmongosh="https://downloads.mongodb.com/compass/mongosh-2.3.2-linux-x64.tar.gz"
+export downmongosh="https://downloads.mongodb.com/compass/mongosh-2.3.2-linux-x64.tgz"
 export arqmongosh="mongosh-2.3.2-linux-x64.tgz"
 export nomemongosh="mongosh-2.3.2-linux-x64"
 
@@ -821,11 +821,20 @@ baixar_android_studio() {
 
 baixar_flutter_sdk() {
     cd "$DEVAPP_HOME" || exit
-    wget --no-check-certificate "$downflutter" -O "$arqflutter"
+    curl -4 -L -k -# "$downflutter" -o "$arqflutter"
+    if [ ! -s "$arqflutter" ]; then
+        tput setaf 1
+        echo "❌ ERRO: O download do Flutter falhou."
+        tput sgr0
+        rm -f "$arqflutter"
+        read -p "Pressione [Enter] para voltar ao menu..."
+        return 1
+    fi
+
     if [ -d "flutter" ]; then
         rm -rf "flutter" # Removendo versão antiga do Flutter...
     fi
-    tar -xJf "$arqflutter" --strip-components=1
+    tar -xJf "$arqflutter"
     rm -f "$arqflutter"
     echo "Dica: Execute 'flutter doctor' para validar dependências."
     read -p "Pressione [Enter] para voltar ao menu..."
