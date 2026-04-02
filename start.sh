@@ -97,7 +97,7 @@ export arqmongodb="mongodb-linux-x86_64-ubuntu2204-8.0.5.tgz"
 export nomemongodb="mongodb-linux-x86_64-ubuntu2204-8.0.5"
 
 export downmongosh="https://downloads.mongodb.com/compass/mongosh-2.3.2-linux-x64.tar.gz"
-export arqmongosh="mongosh-2.3.2-linux-x64.tar.gz"
+export arqmongosh="mongosh-2.3.2-linux-x64.tgz"
 export nomemongosh="mongosh-2.3.2-linux-x64"
 
 export downputty="https://the.earth.li/~sgtatham/putty/latest/linux/x86_64/putty"
