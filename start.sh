@@ -895,13 +895,14 @@ baixar_jdk() {
 
 baixar_maven() {
     cd "$DEVAPP_HOME" || exit
-    wget --no-check-certificate "$downmaven" -O "$arqmaven"
+    curl -f -4 -L -k -# "$downmaven" -o "$arqmaven"
     if [ -d "maven" ]; then
         rm -rf "maven"
     fi
-    tar -xzf "$arqmaven"
+    mkdir -p "maven"
+    tar -xzf "$arqmaven" -C "maven" --strip-components=1
     rm -f "$arqmaven"
-    mv "$nomemaven" "maven"
+    chmod +x "maven/bin/mvn"
     read -p "Pressione [Enter] para voltar ao menu..."
 }
 
@@ -1074,13 +1075,13 @@ baixar_mongodb() {
 
 baixar_mongosh() {
     cd "$DEVAPP_HOME" || exit
-    wget --no-check-certificate "$downmongosh" -O "$arqmongosh"
+    curl -f -4 -L -k -# "$downmongosh" -o "$arqmongosh"
     if [ -d "$MONGOSH_HOME" ] || [ -d "mongosh" ]; then
         rm -rf "$MONGOSH_HOME" "mongosh"
     fi
+    mkdir -p "mongosh"
     tar -xzf "$arqmongosh" --strip-components=1
     rm -f "$arqmongosh"
-    mv "$nomemongosh" "mongosh"
     chmod +x "mongosh/bin/mongosh"
     read -p "Pressione [Enter] para voltar ao menu..."
 }
