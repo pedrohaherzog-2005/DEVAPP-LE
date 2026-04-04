@@ -1080,7 +1080,7 @@ baixar_mongosh() {
         rm -rf "$MONGOSH_HOME" "mongosh"
     fi
     mkdir -p "mongosh"
-    tar -xzf "$arqmongosh" --strip-components=1
+    tar -xzf "$arqmongosh" -C "mongosh" --strip-components=1
     rm -f "$arqmongosh"
     chmod +x "mongosh/bin/mongosh"
     read -p "Pressione [Enter] para voltar ao menu..."
