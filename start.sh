@@ -495,12 +495,19 @@ exec_neo4j() {
 exec_mongodb() {
     if [ -f "$MONGODB_HOME/bin/mongod" ]; then
         mkdir -p "$MONGODB_HOME/data"
-        if command -v gnome-terminal >/dev/null 2>&1; then                                                         # No Linux, tentamos abrir em um novo terminal para você ver os logs.
-            gnome-terminal --title="MONGODB SERVER" -- "$MONGODB_HOME/bin/mongod" --dbpath "$MONGODB_HOME/data" &  # O parâmetro --dbpath funciona igual ao Windows.
+        CMD_INTERNO="echo '=== SERVIDOR MONGODB (DEVAPP-LE) ==='; echo 'Pressione CTRL + C para desligar o servidor de forma segura.'; echo ''; \"$MONGODB_HOME/bin/mongod\" --dbpath \"$MONGODB_HOME/data\"; exec bash"
+        if command -v gnome-terminal >/dev/null 2>&1; then
+            # Abre em uma nova janela do GNOME Terminal
+            gnome-terminal --title="MONGODB SERVER" -- bash -c "$CMD_INTERNO" &
+        elif command -v xterm >/dev/null 2>&1; then
+            # Alternativa caso não use GNOME
+            xterm -T "MONGODB SERVER" -e bash -c "$CMD_INTERNO" &
         else
-            "$MONGODB_HOME/bin/mongod" --dbpath "$MONGODB_HOME/data" > "$MONGODB_HOME/mongodb.log" 2>&1 &  # Caso não tenha terminal gráfico, roda em background
-            echo "MongoDB iniciado em segundo plano. Logs em: $MONGODB_HOME/mongodb.log"
-            sleep 2
+            tput setaf 3
+            echo "⚠️ Terminal gráfico não detectado. Rodando o MongoDB nesta janela..."
+            echo "Pressione CTRL+C para encerrar o banco e voltar ao menu."
+            tput sgr0
+            "$MONGODB_HOME/bin/mongod" --dbpath "$MONGODB_HOME/data"
         fi
     else
         tput setab 1
@@ -518,8 +525,16 @@ exec_mongosh() {
     if [ -f "$MONGOSH_HOME/bin/mongosh" ]; then
         echo "Conectando ao servidor local (padrão)..."
         echo ""
+        CMD_SH="echo '=== MONGODB SHELL (CLIENTE) ==='; echo 'Digite exit para sair.'; echo ''; \"$MONGOSH_HOME/bin/mongosh\"; exec bash"
         if command -v gnome-terminal >/dev/null 2>&1; then
-            gnome-terminal --title="MongoSH" -- "$MONGOSH_HOME/bin/mongosh" &
+            # Abre no GNOME Terminal com título e o comando formatado
+            gnome-terminal --title="MongoSH" -- bash -c "$CMD_SH" &
+        elif command -v xterm >/dev/null 2>&1; then
+            # Alternativa para outros terminais
+            xterm -T "MongoSH" -e bash -c "$CMD_SH" &
+        else # Caso não tenha interface gráfica, roda na janela atual
+            echo "Conectando ao servidor local..."
+            "$MONGOSH_HOME/bin/mongosh"
         fi
     else
         tput setab 1
