@@ -495,18 +495,22 @@ exec_neo4j() {
 exec_mongodb() {
     if [ -f "$MONGODB_HOME/bin/mongod" ]; then
         mkdir -p "$MONGODB_HOME/data"
-        CMD_INTERNO="echo '=== SERVIDOR MONGODB (DEVAPP-LE) ==='; echo 'Pressione CTRL + C para desligar o servidor de forma segura.'; echo ''; \"$MONGODB_HOME/bin/mongod\" --dbpath \"$MONGODB_HOME/data\"; exec bash"
-        if command -v gnome-terminal >/dev/null 2>&1; then
-            # Abre em uma nova janela do GNOME Terminal
-            gnome-terminal --title="MONGODB SERVER" -- bash -c "$CMD_INTERNO" &
-        elif command -v xterm >/dev/null 2>&1; then
-            # Alternativa caso não use GNOME
-            xterm -T "MONGODB SERVER" -e bash -c "$CMD_INTERNO" &
-        else
-            tput setaf 3
-            echo "⚠️ Terminal gráfico não detectado. Rodando o MongoDB nesta janela..."
-            echo "Pressione CTRL+C para encerrar o banco e voltar ao menu."
-            tput sgr0
+        INNER_CMD="echo '=== SERVIDOR MONGODB (DEVAPP-LE) ==='; echo 'Pressione CTRL + C para desligar o servidor.'; echo ''; \"$MONGODB_HOME/bin/mongod\" --dbpath \"$MONGODB_HOME/data\"; exec bash"
+        TERM_FOUND=false
+        for term in gnome-terminal kgx konsole xfce4-terminal mate-terminal lxterminal xterm; do
+            if command -v "$term" >/dev/null 2>&1; then
+                case "$term" in
+                    gnome-terminal) gnome-terminal --title="MONGODB SERVER" -- bash -c "$INNER_CMD" & ;;
+                    kgx) kgx exec bash -c "$INNER_CMD" & ;; # Terminal padrão do Fedora Novo
+                    konsole) konsole -e bash -c "$INNER_CMD" & ;;
+                    *) "$term" -e "bash -c \"$INNER_CMD\"" & ;;
+                esac
+                TERM_FOUND=true
+                break
+            fi
+        done
+        if [ "$TERM_FOUND" = false ]; then
+            tput setaf 3; echo "⚠️ Nenhum terminal gráfico encontrado. Rodando nesta janela..."; tput sgr0
             "$MONGODB_HOME/bin/mongod" --dbpath "$MONGODB_HOME/data"
         fi
     else
@@ -525,15 +529,21 @@ exec_mongosh() {
     if [ -f "$MONGOSH_HOME/bin/mongosh" ]; then
         echo "Conectando ao servidor local (padrão)..."
         echo ""
-        CMD_SH="echo '=== MONGODB SHELL (CLIENTE) ==='; echo 'Digite exit para sair.'; echo ''; \"$MONGOSH_HOME/bin/mongosh\"; exec bash"
-        if command -v gnome-terminal >/dev/null 2>&1; then
-            # Abre no GNOME Terminal com título e o comando formatado
-            gnome-terminal --title="MongoSH" -- bash -c "$CMD_SH" &
-        elif command -v xterm >/dev/null 2>&1; then
-            # Alternativa para outros terminais
-            xterm -T "MongoSH" -e bash -c "$CMD_SH" &
-        else # Caso não tenha interface gráfica, roda na janela atual
-            echo "Conectando ao servidor local..."
+        INNER_CMD="echo '=== MONGODB SHELL ==='; echo 'Digite exit para sair.'; echo ''; \"$MONGOSH_HOME/bin/mongosh\"; exec bash"
+        TERM_FOUND=false
+        for term in gnome-terminal kgx konsole xfce4-terminal mate-terminal lxterminal xterm; do
+            if command -v "$term" >/dev/null 2>&1; then
+                case "$term" in
+                    gnome-terminal) gnome-terminal --title="MongoSH" -- bash -c "$INNER_CMD" & ;;
+                    kgx) kgx exec bash -c "$INNER_CMD" & ;;
+                    konsole) konsole -e bash -c "$INNER_CMD" & ;;
+                    *) "$term" -e "bash -c \"$INNER_CMD\"" & ;;
+                esac
+                TERM_FOUND=true
+                break
+            fi
+        done
+        if [ "$TERM_FOUND" = false ]; then
             "$MONGOSH_HOME/bin/mongosh"
         fi
     else
@@ -724,7 +734,7 @@ exec_inst_ext_vscode() {
     echo "Em $VSCODE_HOME"
     echo "---------------------------------------"
     # pause
-    CODE_BIN="$VSCODE_HOME/bin"
+    CODE_BIN="$VSCODE_HOME/bin/code"
     EXTENSIONS=(
         "christian-kohler.npm-intellisense"
         "christian-kohler.path-intellisense"
