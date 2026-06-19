@@ -17,9 +17,9 @@ export arqvscode="code-stable-x64-1740669146.tar.gz"
 export nomevscode="code"
 
 # link dos arquivos -> mais lento
-# export downnetbeans="https://archive.apache.org/dist/netbeans/netbeans/25/netbeans-25-bin.zip"
 # export downnetbeans="https://dlcdn.apache.org/netbeans/netbeans/26/netbeans-26-bin.zip"
-export downnetbeans="https://dlcdn.apache.org/netbeans/netbeans/27/netbeans-27-bin.zip"
+# export downnetbeans="https://dlcdn.apache.org/netbeans/netbeans/27/netbeans-27-bin.zip"
+export downnetbeans="https://archive.apache.org/dist/netbeans/netbeans/27/netbeans-27-bin.zip"
 export arqnetbeans="netbeans-27-bin.zip"
 export nomenetbeans="netbeans"
 
